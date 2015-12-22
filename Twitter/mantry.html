@@ -1,0 +1,562 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter/mantry">mantry</a></td>
+        <td>New York</td>
+        <td>Mantry (The Modern Man's Pantry) is an American Artisan food-of-the-month club.   Receive a curated selection of premium, full-sized food products every month.</td>
+        <td>3,460</td>
+        <td>2,716</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>mantry</span> engages 22% (retweets/tweets) and has average resonance of 1.22</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#instafood</td>
+        <td>38</td>
+    </tr>
+    <tr>
+        <td>#foodie</td>
+        <td>32</td>
+    </tr>
+    <tr>
+        <td>#foodporn</td>
+        <td>31</td>
+    </tr>
+    <tr>
+        <td>#mantry</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>#yum</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#nomnom</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#food</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#nyc</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#EEEEEATS</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#comfortfood</td>
+        <td>11</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>mantry</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>popsugar</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>mashable</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>donnaoneil</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>idubbbz</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>theeverygirl_</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>ccoronato</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>refinery29</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>ssstrom</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>macycwilliams</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Bacon Jam Pulled Pork Sando Recipe from the Father's Day "Bourbon BBQ" Mantry ft. @skilletstfood &amp;amp; @southernsoulbbq http://t.co/dWzkjzLHPl</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Thanks to @USATODAY and the @DadRockShow crew of @themrpatty + @jlenahan for DAD approving @mantry , great duo! http://t.co/9bzbBzwiMz</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Taco Time #tacos #mexican #pescado #nomnom #instafood #foodie #foodporn #lime #EEEEEATS #streetfood #yum #carnitas … http://t.co/yvaKv0Ee7q</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Perogi Perfection #shortrib #sourcream #applesace #ukranian #diner #eastvillage #foodie #foodporn #comfortfood #n... http://t.co/WBjn8rRTzj</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Nourishing Roast Pork, Rice &amp;amp; Beans #diner #dominican #comfortfood #brunch #pork #instafood #foodie #foodporn #ny... http://t.co/Ai4MLK5GFk</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Chorizo Nachos #superbowl #nachos #texas #cerveza #instafood #foodporn #barfood  #beer #foodie #EEEEEATS @nwelixirs… http://t.co/UooCMIQ7vB</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>"Germantry" @SchallerWeber Alpine Salami, Maple Glazed Brats, Soft Pretzels, Truffle Potato Salad, Smoked Stout Bar. http://t.co/s25JSZouph</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Thai Chili Wings #superbowl #chickenwings #gameday #thai #nomnom #foodphotography #foodporn #instafood #EEEEEATS #m… http://t.co/9rRYBgPz5V</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Next Sunday is #FathersDay, if Dad likes bourbon and grilling the "Bourbon BBQ" Mantry is .... well you get the idea. http://t.co/qRziaxRUaF</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Holy Mole Negro #mexican #comfortfood #chicken #streetfood #instafood #tacos #mole #queens #foodporn #foodie #oax... http://t.co/3oYZ1fsf4H</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Mantry</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#FathersDay</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#VIDEO</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#ValentinesDay</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Bittermilk</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#fusionjerky</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#twitter</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Recipe</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#groom</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#GochuJangSauce</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>mantry</td>
+        <td>68</td>
+    </tr>
+    <tr>
+        <td>donnaoneil</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>liberandco</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>schmanks</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>crazyrew</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>bloglovin</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>fabfatale</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>julesgourmet</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>coolmomeats</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>leitesculinaria</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>32</td>
+        <td>RT @bonappetit: In which these spicy skewers claim their rightful place on your grill http://t.co/5sKe6bFClC http://t.co/kRosmjDvcW</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>RT @visitmusiccity: NEW giveaway: Enter to win a trip to Nashville and a @mantry! http://t.co/0wXngmZ6rd http://t.co/208OjU8DKl</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @FabFatale: order @Mantry today to get a crate at his doorstep by #ValentinesDay! review here —&amp;gt; http://t.co/LiSrw0Ccic http://t.co/8HeL…</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @ClementineDaily: birthdays, weddings, babies, #fathersday &amp;amp; more: @reetzrobin listed our top box subscriptions: http://t.co/pFXnagXZBX …</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @schmanks: Noble's Tuthilltown Bourbon Barrel Matured Maple Syrup? Too good for just pancakes! @mantry #morningjoe http://t.co/W74VTZJd8t</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @julesgourmet: We're excited to be part of @mantry's food-of-the-month club! Perhaps a great gift for Father's Day?! http://t.co/04C0YlB…</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @getnanit: #FathersDay Gifts http://t.co/HFKQi4ZSuH @Mantry @UncommonGoods @Food52 @BestMadeCo @MCMCFragrances @JMcLaughlinNY. http://t.…</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @cushjk: My new favourite treat! Thank you @Deanosjalapenos   #burnssogood @mantry http://t.co/7Lq7YXi22g</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @ElettraW: You know what this is? A completely fuel free stove. Reflects and directs sun's rays to cook food. I… https://t.co/woQSSW2RlF</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @ClubW: Check out our Father's Day Guide w/ unique gifts for all dads! @parachutehome @mantry &amp;amp; more! http://t.co/8Hg4RFRR1d http://t.co…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (22/12/2015)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['mantry_tweets.tsv', 'mantry_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .attr("data-toggle","tooltip")
+        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

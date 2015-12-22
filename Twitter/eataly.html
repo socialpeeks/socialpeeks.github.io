@@ -1,0 +1,562 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter/Eataly">Eataly</a></td>
+        <td>200 5th Avenue</td>
+        <td>Eataly New York's Official Twitter Account! Looking for Chicago? Follow @EatalyChicago! #EatBetterLiveBetter</td>
+        <td>45,788</td>
+        <td>946</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>Eataly</span> engages 26% (retweets/tweets) and has average resonance of 8.94</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#winestudio</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#NationalPastaDay</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#CasksAndMasks</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Periscope</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#NationalSandwichDay</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#MeatlessMonday</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Halloween</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#CiderWeekNYC15</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Baita</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#sage</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>ferraritrento</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>mariobatali</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>lidiabastianich</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>calvisiususa</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>ferraritemplar</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>jancisrobinson</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>loackerusa</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>protocolwine</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>martindredmond</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>talesofthecork</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>It's finally here... TRUFFLE DAY! Today only, visit our marketplace. We're selling fresh white truffles at cost! https://t.co/EmfkT0ax8Z</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>Dinner tonight: this tasty recipe for Ziti alla Norma from @LidiaBastianich's new cookbook! https://t.co/AuIiE3tJaV https://t.co/OTxKTaYTRu</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>Celebrate #NationalPastaDay with our guide on how to make fresh pasta at home: http://t.co/19BKNPs2zn http://t.co/jI1nOpPNW8</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>Watch @Mariobatali cook a unique octopus dish in the premiere episode of "Taking Requests!" https://t.co/DXTD0007jU https://t.co/27kJM7ubV9</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Happy #NationalChocolateDay! https://t.co/ALKBpamS06</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Blueberry Focaccia is back for a limited time! Thx to @robertsietsema for adding it to the "15 Best Dishes of 2015!" https://t.co/Ea59A3oiQQ</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>We're hosting Perugina from noon-3pm &amp;amp; 5-8pm for a complimentary tasting of Baci! Join us for a sweet Friday treat! https://t.co/VPSFoS8KJY</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Join us at Baita and enjoy warm winter cocktails and Northern-Italian dishes such as Probusto con Polenta e Crauti. https://t.co/Z6xMcBGub6</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Today is La Festa di Santa Lucia, people across Italy celebrate the feast day of Sta Lucia. https://t.co/M6MjXGAKti https://t.co/pItyAuFyMR</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Innovation: How do Top Businesses Define It? Here's what @NicolaFarinetti says about it: https://t.co/kVbg1UQDYk https://t.co/Ok4igF0ER7</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#NYC</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#Eataly</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#TakingRequests</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#seasonwithauthority</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#birreria</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#UrbaniTruffle</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#CalvisiusCaviar</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#EatalyNYC</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#winestudio</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Periscope</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>eataly</td>
+        <td>96</td>
+    </tr>
+    <tr>
+        <td>mariobatali</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>nicolafarinetti</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>urbanitruffles</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>chefmarcmurphy</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>bitbyafox</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>jbastianich</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>eatalychicago</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>lidiabastianich</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>amnewyork</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>RT @Mariobatali: Coming at ya thursday on #TakingRequests. Get ready, Rhonda from Joplin, MO- i made you something deeelish! @Eataly https:…</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @Mariobatali: for the next #TakingRequests, i went shopping at @Eataly then created this bad ass dish https://t.co/PgTLcyIh1z … https://…</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @Mariobatali: You know you want this dish.you know you NEED this dish! recipe for #TakingRequests https://t.co/jHHSpu4hi1 @Eataly https:…</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @Mariobatali: #TakingRequests goes sweet! what i like to do with my holiday pandoro from @Eataly https://t.co/TnHJzhiPMb https://t.co/8f…</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>RT @chefmarcmurphy: There are few things in this world as good as a bowl of spaghetti carbonara! #seasonwithauthority 2nd course @Eataly ht…</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>RT @NicolaFarinetti: Check number 23! <br>https://t.co/xKDelxDKZ1 <br>@Mariobatali @Jbastianich @LidiaBastianich @EatalyIT @Eataly @EatalyChicago</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>RT @Jbastianich: Now this takes some skill! Cutting up a whole @GranaPadanoDOP wheel @Eataly #granapadano #EatalyNYC https://t.co/LZ1BHijue5</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>RT @amNewYork: .@Eataly is opening a new restaurant that'll only serve truffles https://t.co/4SECniZAun https://t.co/TdjVscwMR1</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>RT @Mariobatali: #TakingRequests w @Eataly coming up on Thursday 11/5 feat. these 4 ingredients!!! https://t.co/rNlJwoco5d</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @wobi_en: .@Eataly founder @oscarfarinetti takes the stage! "Eataly is not a chain. Eataly stores are brothers." #wbfny https://t.co/p3B…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (22/12/2015)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['Eataly_tweets.tsv', 'Eataly_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .attr("data-toggle","tooltip")
+        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>
