@@ -133,6 +133,9 @@ h1 span {
     input[type=button] {
         margin:10px; 
     }
+    .glyphicon {
+        font-size: 24px;
+    }
     </style>
     <script src="http://d3js.org/d3.v3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -155,13 +158,13 @@ h1 span {
         <td><a href="http://twitter/RossellaRago">RossellaRago</a></td>
         <td>New York</td>
         <td>Host of Cooking with Nonna.<br>Winner of Food Network - 24 Hour Rest. Battle. Nutella &amp; Wine Lover!</td>
-        <td>2,755</td>
+        <td>2,758</td>
         <td>1,632</td>
     </tr>
 </table><h2>Analysis based on 400 most recent tweets</h2>
-<h2><span>RossellaRago</span> engages 0.75% (retweets/tweets) and has average resonance of 0.61</h2>
+<h2><span>RossellaRago</span> engages 0.75% (retweets/tweets) and has average resonance of 0.58</h2>
 <hr><div id="chart"></div>
-<div id="dataset-picker"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
 <div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
     <tr>
         <th>hashtag</th>
@@ -185,15 +188,7 @@ h1 span {
     </tr>
     <tr>
         <td>2</td>
-        <td>Soup time!! Try my yummy spinach soup with sausage meatballs!!<br><br>RECIPE HERE:... https://t.co/InFp6ITYyw</td>
-    </tr>
-    <tr>
-        <td>2</td>
         <td>How delicious does this pasta Bolognese look!!<br><br>RECIPE HERE:... https://t.co/VEFeDuTgC9</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Good Morning!  I think I will have a Cartoccio this morning!  What are you having?<br><br>Recipe Here:... https://t.co/Iw36rp9eE5</td>
     </tr>
     <tr>
         <td>1</td>
@@ -222,6 +217,14 @@ h1 span {
     <tr>
         <td>1</td>
         <td>Torrone Time!!!<br><br>RECIPE HERE: https://t.co/GI6K1jFu0N https://t.co/A17gzKqcjW</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>To all of our members if you haven't joined by liking our friends page please do ! Grazie ! Benvenuti !... https://t.co/N7KooeEBhQ</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Time for a nice Zuppa di Pesce!!<br>https://t.co/8tT6JgPkSF https://t.co/TnPq42RPyK</td>
     </tr>
 </table>
 <div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
@@ -387,8 +390,6 @@ h1 span {
         .attr("type", "button")
         .attr("class", "btn btn-primary")
         .attr("style","padding: 5px 10px")
-        .attr("data-toggle","tooltip")
-        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
         .on("click", function(d) {
           heatmapChart(d);
         });

@@ -133,6 +133,9 @@ h1 span {
     input[type=button] {
         margin:10px; 
     }
+    .glyphicon {
+        font-size: 24px;
+    }
     </style>
     <script src="http://d3js.org/d3.v3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -155,13 +158,13 @@ h1 span {
         <td><a href="http://twitter/Eataly">Eataly</a></td>
         <td>200 5th Avenue</td>
         <td>Eataly New York's Official Twitter Account! Looking for Chicago? Follow @EatalyChicago! #EatBetterLiveBetter</td>
-        <td>45,788</td>
+        <td>45,793</td>
         <td>946</td>
     </tr>
 </table><h2>Analysis based on 400 most recent tweets</h2>
-<h2><span>Eataly</span> engages 26% (retweets/tweets) and has average resonance of 8.94</h2>
+<h2><span>Eataly</span> engages 26% (retweets/tweets) and has average resonance of 8.82</h2>
 <hr><div id="chart"></div>
-<div id="dataset-picker"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
 <div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
     <tr>
         <th>hashtag</th>
@@ -192,10 +195,6 @@ h1 span {
         <td>2</td>
     </tr>
     <tr>
-        <td>#Halloween</td>
-        <td>2</td>
-    </tr>
-    <tr>
         <td>#CiderWeekNYC15</td>
         <td>2</td>
     </tr>
@@ -205,6 +204,10 @@ h1 span {
     </tr>
     <tr>
         <td>#sage</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#NationalPastryDay</td>
         <td>1</td>
     </tr>
 </table></div>
@@ -547,8 +550,6 @@ h1 span {
         .attr("type", "button")
         .attr("class", "btn btn-primary")
         .attr("style","padding: 5px 10px")
-        .attr("data-toggle","tooltip")
-        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
         .on("click", function(d) {
           heatmapChart(d);
         });

@@ -133,6 +133,9 @@ h1 span {
     input[type=button] {
         margin:10px; 
     }
+    .glyphicon {
+        font-size: 24px;
+    }
     </style>
     <script src="http://d3js.org/d3.v3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -155,13 +158,13 @@ h1 span {
         <td><a href="http://twitter/fabioviviani">fabioviviani</a></td>
         <td>Moorpark, CA, United States</td>
         <td>100% Imported | Chef - Restaurateur | Entrepreneur | Speaker | Hospitality Coach | Wanna hear it ? Just ask info@fabioviviani.com</td>
-        <td>216,359</td>
+        <td>216,371</td>
         <td>1,092</td>
     </tr>
 </table><h2>Analysis based on 400 most recent tweets</h2>
-<h2><span>fabioviviani</span> engages 11% (retweets/tweets) and has average resonance of 16.25</h2>
+<h2><span>fabioviviani</span> engages 11% (retweets/tweets) and has average resonance of 16.35</h2>
 <hr><div id="chart"></div>
-<div id="dataset-picker"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
 <div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
     <tr>
         <th>hashtag</th>
@@ -172,32 +175,32 @@ h1 span {
         <td>27</td>
     </tr>
     <tr>
-        <td>#DRINKWITHFABIO</td>
+        <td>#KNOWHOW</td>
         <td>19</td>
     </tr>
     <tr>
-        <td>#KNOWHOW</td>
+        <td>#DRINKWITHFABIO</td>
         <td>18</td>
-    </tr>
-    <tr>
-        <td>#CHICAGO</td>
-        <td>15</td>
     </tr>
     <tr>
         <td>#THANKSGIVING</td>
         <td>15</td>
     </tr>
     <tr>
+        <td>#CHICAGO</td>
+        <td>14</td>
+    </tr>
+    <tr>
         <td>#RECIPEASY</td>
         <td>14</td>
     </tr>
     <tr>
-        <td>#WINEWEDNESDAY</td>
-        <td>13</td>
-    </tr>
-    <tr>
         <td>#BOOM</td>
         <td>12</td>
+    </tr>
+    <tr>
+        <td>#WINEWEDNESDAY</td>
+        <td>11</td>
     </tr>
     <tr>
         <td>#CUTTHROATKITCHEN</td>
@@ -215,15 +218,15 @@ h1 span {
     </tr>
     <tr>
         <td>fvwines</td>
-        <td>45</td>
+        <td>43</td>
     </tr>
     <tr>
         <td>sienatavern</td>
-        <td>38</td>
+        <td>39</td>
     </tr>
     <tr>
         <td>barsiena</td>
-        <td>34</td>
+        <td>33</td>
     </tr>
     <tr>
         <td>primeprovisions</td>
@@ -435,7 +438,7 @@ h1 span {
     </tr>
     <tr>
         <td>9</td>
-        <td>RT @FVWines: Have some fun with your kids and read my Pizza Banking 101 - https://t.co/H4ebXjLF6U #DrinkWithFabio #BOOM #WineTime https://t…</td>
+        <td>RT @FVWines: Want to know more about the Napa wine region? This #Infographic is perfect!! #BOOM #DrinkWithFabio https://t.co/GaPx400PeI</td>
     </tr>
 </table>
 <div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (22/12/2015)</div></div>
@@ -547,8 +550,6 @@ h1 span {
         .attr("type", "button")
         .attr("class", "btn btn-primary")
         .attr("style","padding: 5px 10px")
-        .attr("data-toggle","tooltip")
-        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
         .on("click", function(d) {
           heatmapChart(d);
         });

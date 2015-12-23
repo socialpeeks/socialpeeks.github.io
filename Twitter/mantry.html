@@ -133,6 +133,9 @@ h1 span {
     input[type=button] {
         margin:10px; 
     }
+    .glyphicon {
+        font-size: 24px;
+    }
     </style>
     <script src="http://d3js.org/d3.v3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -155,13 +158,13 @@ h1 span {
         <td><a href="http://twitter/mantry">mantry</a></td>
         <td>New York</td>
         <td>Mantry (The Modern Man's Pantry) is an American Artisan food-of-the-month club.   Receive a curated selection of premium, full-sized food products every month.</td>
-        <td>3,460</td>
-        <td>2,716</td>
+        <td>3,464</td>
+        <td>2,720</td>
     </tr>
 </table><h2>Analysis based on 400 most recent tweets</h2>
-<h2><span>mantry</span> engages 22% (retweets/tweets) and has average resonance of 1.22</h2>
+<h2><span>mantry</span> engages 22% (retweets/tweets) and has average resonance of 1.21</h2>
 <hr><div id="chart"></div>
-<div id="dataset-picker"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
 <div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
     <tr>
         <th>hashtag</th>
@@ -181,7 +184,7 @@ h1 span {
     </tr>
     <tr>
         <td>#mantry</td>
-        <td>18</td>
+        <td>19</td>
     </tr>
     <tr>
         <td>#yum</td>
@@ -215,7 +218,7 @@ h1 span {
     </tr>
     <tr>
         <td>mantry</td>
-        <td>25</td>
+        <td>26</td>
     </tr>
     <tr>
         <td>popsugar</td>
@@ -372,6 +375,10 @@ h1 span {
         <td>3</td>
     </tr>
     <tr>
+        <td>leitesculinaria</td>
+        <td>2</td>
+    </tr>
+    <tr>
         <td>bloglovin</td>
         <td>2</td>
     </tr>
@@ -387,10 +394,6 @@ h1 span {
         <td>coolmomeats</td>
         <td>2</td>
     </tr>
-    <tr>
-        <td>leitesculinaria</td>
-        <td>2</td>
-    </tr>
 </table></div>
 <h2>Most popular retweets</h2><table class="rwd-table">
     <tr>
@@ -400,6 +403,10 @@ h1 span {
     <tr>
         <td>32</td>
         <td>RT @bonappetit: In which these spicy skewers claim their rightful place on your grill http://t.co/5sKe6bFClC http://t.co/kRosmjDvcW</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>RT @TODAYshow: It's not too late! Check out the best gifts for the foodie on your list: https://t.co/AkO6nypkML<br>https://t.co/73Xymb919L</td>
     </tr>
     <tr>
         <td>6</td>
@@ -432,10 +439,6 @@ h1 span {
     <tr>
         <td>3</td>
         <td>RT @ElettraW: You know what this is? A completely fuel free stove. Reflects and directs sun's rays to cook food. I… https://t.co/woQSSW2RlF</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>RT @ClubW: Check out our Father's Day Guide w/ unique gifts for all dads! @parachutehome @mantry &amp;amp; more! http://t.co/8Hg4RFRR1d http://t.co…</td>
     </tr>
 </table>
 <div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (22/12/2015)</div></div>
@@ -547,8 +550,6 @@ h1 span {
         .attr("type", "button")
         .attr("class", "btn btn-primary")
         .attr("style","padding: 5px 10px")
-        .attr("data-toggle","tooltip")
-        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
         .on("click", function(d) {
           heatmapChart(d);
         });

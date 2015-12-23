@@ -133,6 +133,9 @@ h1 span {
     input[type=button] {
         margin:10px; 
     }
+    .glyphicon {
+        font-size: 24px;
+    }
     </style>
     <script src="http://d3js.org/d3.v3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -155,13 +158,13 @@ h1 span {
         <td><a href="http://twitter/LidiaBastianich">LidiaBastianich</a></td>
         <td>New York, NY</td>
         <td>I've married my two passions in life: family and food.</td>
-        <td>26,947</td>
+        <td>26,953</td>
         <td>248</td>
     </tr>
 </table><h2>Analysis based on 400 most recent tweets</h2>
-<h2><span>LidiaBastianich</span> engages 34% (retweets/tweets) and has average resonance of 14.56</h2>
+<h2><span>LidiaBastianich</span> engages 34% (retweets/tweets) and has average resonance of 14.46</h2>
 <hr><div id="chart"></div>
-<div id="dataset-picker"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
 <div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
     <tr>
         <th>hashtag</th>
@@ -173,7 +176,7 @@ h1 span {
     </tr>
     <tr>
         <td>#LidiaCelebratesAmerica</td>
-        <td>9</td>
+        <td>10</td>
     </tr>
     <tr>
         <td>#delizioso</td>
@@ -196,12 +199,12 @@ h1 span {
         <td>5</td>
     </tr>
     <tr>
-        <td>#BuonAppetivo</td>
+        <td>#BuonNatale</td>
         <td>4</td>
     </tr>
     <tr>
-        <td>#BuonNatale</td>
-        <td>3</td>
+        <td>#BuonAppetivo</td>
+        <td>4</td>
     </tr>
     <tr>
         <td>#HomeForTheHolidays</td>
@@ -223,7 +226,7 @@ h1 span {
     </tr>
     <tr>
         <td>lidiaskc</td>
-        <td>5</td>
+        <td>6</td>
     </tr>
     <tr>
         <td>delposto</td>
@@ -369,10 +372,6 @@ h1 span {
     </tr>
     <tr>
         <td>felidianyc</td>
-        <td>7</td>
-    </tr>
-    <tr>
-        <td>tanyabastianich</td>
         <td>6</td>
     </tr>
     <tr>
@@ -381,6 +380,10 @@ h1 span {
     </tr>
     <tr>
         <td>atproctors</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>tanyabastianich</td>
         <td>5</td>
     </tr>
     <tr>
@@ -547,8 +550,6 @@ h1 span {
         .attr("type", "button")
         .attr("class", "btn btn-primary")
         .attr("style","padding: 5px 10px")
-        .attr("data-toggle","tooltip")
-        .attr("title","A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour.")
         .on("click", function(d) {
           heatmapChart(d);
         });
