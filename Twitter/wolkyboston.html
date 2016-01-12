@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/WolkyBoston">WolkyBoston</a></td>
+        <td>Boston, MA</td>
+        <td>Wife/Mother of 2/Lover of moscato wine, assorted boxed chocolates, black coffee, knitting, cats, photography, rustic &amp; the sweet sound of acoustic music.</td>
+        <td>10,192</td>
+        <td>9,973</td>
+    </tr>
+</table><h2>Analysis based on 317 most recent tweets</h2>
+<h2><span>WolkyBoston</span> engages 42% (retweets/tweets) and has average resonance of 4.73</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#yarn</td>
+        <td>32</td>
+    </tr>
+    <tr>
+        <td>#knittersofinstagram</td>
+        <td>28</td>
+    </tr>
+    <tr>
+        <td>#knitting</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>#knit</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>#knitters</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#knittersoftwitter</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#CatsOfTwitter</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#cats</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#FixerUpper</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#knitter</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>knitpicks</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>adele</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>chippergaines</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>themagnoliamom</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>chronicle5</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>hgtv</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>wcvb</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>pbs</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>ravelry</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>lionbrandyarn</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>When I make a mistake on my #knitting #project and it's at the point of no return, I call that my signature.</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>My first Lampwork Mitt is done. I'm in love with this colorwork #design! Pattern is from @KnitPicks. #knit #yarn https://t.co/dNaHvue8Vi</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Perfect fall weather today, wearing the sweater I knitted. So soft, warm, and perfect! #knittersofinstagram #yarn https://t.co/oZlT3fC2IU</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>My love birds colorwork coffee sleeve is done! <br><br>#knittersofinstagram #Knitters #knittingpattern #yarn #coffee https://t.co/ViWL50zyOQ</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>I woke up this AM &amp;amp; saw this. My 5 yr old has claimed my newest hat. If it makes her happy 😊#knittersofinstagram https://t.co/roVj8ToRX8</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Every #cat owner understands this picture. #littlelions https://t.co/EqOukcRQl5</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>@Adele #Hello https://t.co/EdLmpuIMYK</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>@MetMikeWCVB @wcvb Giant rainbow over Boston right now!! https://t.co/cV8KvqK3rJ</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>"Diamonds Are Forever Hat" done and ready to be worn #knittersofinstagram #knit #yarn  #knitter https://t.co/KQz5umj0YP</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>What was that? Starting a new project while your current one isn't done yet, are we? Why yes.. yes I am! #Knitters https://t.co/EqwwTk2GAu</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#yarn</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>#knitting</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td>#knitter</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#crochet</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#knit</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#DIY</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#knittersofinstagram</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#LBYarnTips</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#wool</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#knitstagram</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>knitpicks</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>lionbrandyarn</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>michaelsstores</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>vogueknitting</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>yarnbob_etsy</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>cosywool</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>letsknitmag</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>alexitavel</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>brendabarnes</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>loveknitting</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>980</td>
+        <td>RT @TheEllenShow: This knit is bananas. https://t.co/WcVaczW3xD</td>
+    </tr>
+    <tr>
+        <td>253</td>
+        <td>RT @yorkshireknits: Our #bestseller #owl mitts<br>ideal for #lastminutegift #giftsforher<br>https://t.co/msEwuKrsW8<br>ready made or Custom #knit ht…</td>
+    </tr>
+    <tr>
+        <td>66</td>
+        <td>RT @LoveKnitting: Re-tweet if you agree! https://t.co/ChSQa56Ae3</td>
+    </tr>
+    <tr>
+        <td>54</td>
+        <td>RT @MirandaKeeling: Woman in a cafe: Are you making me a hat?<br>Knitting woman: No. I don't know you.<br>Woman: I'm Alice. Can I have a hat?<br>Kni…</td>
+    </tr>
+    <tr>
+        <td>45</td>
+        <td>RT @Wovember: 100% ACRYLIC is NOT 100% WOOL https://t.co/DAFWzmjiN2 https://t.co/719OuQHF4x</td>
+    </tr>
+    <tr>
+        <td>35</td>
+        <td>RT @LionBrandYarn: Did you procraftinate this year? It's OK. :) https://t.co/Vi5VWfPZHp</td>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td>RT @ericfisher: What a gorgeous night for a winter stroll in #Boston. #wbz https://t.co/P0LLnQCAVD</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>RT @LoveKnitting: A knitters reaction to cold weather... More reactions here: https://t.co/AAgEZuLuba #knitting https://t.co/Gb4TcGjjp0</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>RT @FunNFiber: When #Knitters Go Bad….. https://t.co/U3Kkvxu97S</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>RT @JoshMalina: Buzzed knitting is drunk knitting.</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (10/01/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['WolkyBoston_tweets.tsv', 'WolkyBoston_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

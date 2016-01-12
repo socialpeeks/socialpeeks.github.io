@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/sudipdasin">sudipdasin</a></td>
+        <td>22.524489,88.360416</td>
+        <td>Sudip Das - #WebEntrepreneur #SocialMediaConsultant #TechConsultant  #Blogger #OpenNetworker #GlobalConnector. Join me #XeeMe https://t.co/D9PXP7VkYi :)</td>
+        <td>27,366</td>
+        <td>17,535</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>sudipdasin</span> engages 48% (retweets/tweets) and has average resonance of 0.19</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#socialmedia</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>#influence</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>#art</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#ToniBraxtonMovie</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#healthy</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#awesome</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Royal</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#unbreakmyheartbiopic</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#fog</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#adda</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>sudipdasin</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>roundteam</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>googleexpertuk</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>bebeesocial</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>andreearchbold</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>hichamchraibi</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>mjasonhouck</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>kimgarst</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>alfredovela</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>jeffbullas</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Top story: @doctordiscoVEVO: 'harrison ford reacting to carrie fisher saying sh… https://t.co/l8qkZ5ICnk, see more https://t.co/X3YHhTEr77</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Check out Klout Perks! Use social. Get rewarded. Give your opinion. #awesome https://t.co/kw4kTHeFPb</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>C-Way Is An Apple Watch For Kids While wandering the Eureka Park floor at CES, we ran into C-Way, a cool French sta… https://t.co/rq19KD35qh</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Blogging is out! https://t.co/xbu5C1RKoL Stories via @ETGblog</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>A Vegas Drone Rodeo In The Rain  Just like last year, we paid a visit to the annual Drone Rodeo in the Nevada deser… https://t.co/j4IgZkhQXI</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Top story: Why we support mandatory national GMO labeling https://t.co/hRQYSB7th1, see more https://t.co/aj6i6x3yfu</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Top story: The Value In Virtual And Augmented Reality  |  TechCrunch https://t.co/UXQspy2ueG, see more https://t.co/X3YHhTEr77</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Top story: Pee-wee's Big Holiday, Midnight Special, Preacher and more set for 2… https://t.co/T7JK6Lltdq, see more https://t.co/X3YHhTEr77</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Top story: Fresh From the Fryer: Old-Fashioned Cinnamon-Sugar Cake Donuts | Bay… https://t.co/usjxIqk004, see more https://t.co/NH8oa3o7Mz</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Top story: Facebook delivers | Funny Pics https://t.co/Rg2EnLByt0, see more https://t.co/DSC509A0GD</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#SocialMedia</td>
+        <td>136</td>
+    </tr>
+    <tr>
+        <td>#Marketing</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#Twitter</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#Mktg</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#Facebook</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#contentmarketing</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#SMM</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Blogging</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#thankSAll</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>sudipdasin</td>
+        <td>49</td>
+    </tr>
+    <tr>
+        <td>kimgarst</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>cynthialardner</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>ms_terree</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>jeffbullas</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>wittier</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>hichamchraibi</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>lmjb</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>withwish_taka</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>red_web_design</td>
+        <td>10</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>95</td>
+        <td>RT @TM_CE: RT @TM_CE: TOP #ReTweeters! @waynemoran_inc @TOOLS_BOX_FR @withwish_taka @placerdiario @sudipdasin @LMJB @yanaimiu @tachan_san</td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td>RT @jeffbullas: The 23 Best Facebook Marketing Campaigns We Could Find https://t.co/eeQdpdpnu3  #facebook #SMM #socialmedia https://t.co/rR…</td>
+    </tr>
+    <tr>
+        <td>56</td>
+        <td>RT @jeffbullas: A Powerful Tool to Curate and Create Great Content that Google Loves https://t.co/iUNtJ5pyLH #socialmedia #seo #contentmark…</td>
+    </tr>
+    <tr>
+        <td>52</td>
+        <td>RT @kimgarst: #SocialMedia is like a box of chocolates...you never know who you are going to meet, speak to or what opportunities will come…</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td>RT @JuntaeDeLane: Here's Why Consumers View Brands As Relationships https://t.co/63cq4BWxDy #branding #marketing #socialmedia</td>
+    </tr>
+    <tr>
+        <td>49</td>
+        <td>RT @kimgarst: Pay attention to #Facebook Insights. You can see what type of content is performing well on your page. #socialmedia</td>
+    </tr>
+    <tr>
+        <td>48</td>
+        <td>RT @Red_Web_Design: Social Media Hashtags: How Many You Should Use on Each Network:<br><br>https://t.co/x34MxD4Yyi<br><br>#SocialMedia https://t.co/VZI…</td>
+    </tr>
+    <tr>
+        <td>48</td>
+        <td>RT @JuntaeDeLane: How To Test Your Marketing Campaigns https://t.co/Q4EzCwjM3a #marketing #socialmedia #digitalmarketing</td>
+    </tr>
+    <tr>
+        <td>48</td>
+        <td>RT @JuntaeDeLane: A #SocialMedia strategy will only be as effective as the goals it’s designed to achieve.</td>
+    </tr>
+    <tr>
+        <td>46</td>
+        <td>RT @kimgarst: Don't just talk about your product. Talk about your area of expertise! #twittertip #socialmedia</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (10/01/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['sudipdasin_tweets.tsv', 'sudipdasin_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

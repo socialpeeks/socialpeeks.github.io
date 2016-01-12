@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/maggie82">maggie82</a></td>
+        <td>Toledo, OH</td>
+        <td>A conservative in NW Ohio; owner-Corsair Communications; former County Commissioner, #tcot</td>
+        <td>4,002</td>
+        <td>4,368</td>
+    </tr>
+</table><h2>Analysis based on 599 most recent tweets</h2>
+<h2><span>maggie82</span> engages 37% (retweets/tweets) and has average resonance of 0.88</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Dream15</td>
+        <td>74</td>
+    </tr>
+    <tr>
+        <td>#ohtcot</td>
+        <td>69</td>
+    </tr>
+    <tr>
+        <td>#MaumeeBay</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>#LakeErie</td>
+        <td>66</td>
+    </tr>
+    <tr>
+        <td>#sunrise</td>
+        <td>62</td>
+    </tr>
+    <tr>
+        <td>#Ohio</td>
+        <td>44</td>
+    </tr>
+    <tr>
+        <td>#Toledo</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>#tcot</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#rtw</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#toledoohio</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>governorperry16</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>johnkasich</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>guypbenson</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>jonhusted</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>bobbyjindal</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>repbradwenstrup</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>cameron_gray</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>weatherchannel</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>dailysignal</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>robportman</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>@RepBradWenstrup I believe in prosperity through independence. we should brag about how many ppl we get off Medicaid - not on. #Dream15</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>@Cameron_Gray so tired of western feminism&amp;amp; their idea of what is important vs. silence on ISIS sex slavery #dream15</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Atrocious!  A travesty! &amp;gt;&amp;gt; Detroit Public Schools: 93% Not Proficient in Reading; 96% Not Proficient in Math https://t.co/q6KfD5lxRq</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Best part about conservative authors:  their sense of humor with @jimgeraghty @guypbenson @KSoltisAnderson at #dream15</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>@Jim_Jordan gets @AFPfoundation Washington Award #dream15</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>@jontaffer: when we fight for small business, we defend the American dream. #screamlikeme  #dream15</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Great dinner with @MelissaTweets @FlashReport @StacyOnTheRight @BlameTelford @allenfuller @guypbenson @okmaher at #ROL15</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Did you know that supporting tax increases was the job of a city councilman? #ohtcot https://t.co/TNVywzKFfS</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>@governorperry16 Medicaid expansion: fed $$ doesn't come from endless vault in DC-came from bankers in China &amp;amp; children in Columbus #Dream15</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>#irony:  push for $15 min wage and then seek exemption for firms with union workers http://t.co/mBdwDnvVo7 #ohtcot #unions #fail #tcot</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Dream15</td>
+        <td>153</td>
+    </tr>
+    <tr>
+        <td>#Obamacare</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#tcot</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#RTW</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#ohtcot</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#ROL15</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#BobbyJindal</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#JebBush</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#RightToWork</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#schoolchoice</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>afphq</td>
+        <td>37</td>
+    </tr>
+    <tr>
+        <td>jasonahart</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>ohwatchdog</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>johnkasich</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>maggie82</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>cameron_gray</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>guypbenson</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>jimgeraghty</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>66blm</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>kevinboyd1984</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>2416</td>
+        <td>RT @StationCDRKelly: Here I am. @Space_Station and a colorful #Moon: http://t.co/7ruGhKzgs6 http://t.co/okpk6CxO13</td>
+    </tr>
+    <tr>
+        <td>251</td>
+        <td>RT @JohnEkdahl: Holy shit, the Hillary video is much worse than the quote. https://t.co/lHIibyuvXM</td>
+    </tr>
+    <tr>
+        <td>189</td>
+        <td>RT @BenHowe: Hi, media. Notice how these #PlannedParenthood videos are getting progressively worse? Maybe think about that before reacting.</td>
+    </tr>
+    <tr>
+        <td>132</td>
+        <td>RT @jimgeraghty: Union protesters leaving. Can't expect them to put in a full shift. #Dream15 http://t.co/MVz1PX9pcf</td>
+    </tr>
+    <tr>
+        <td>118</td>
+        <td>RT @HighCastleTV: A new America: making this country great again. #HighCastle<br>https://t.co/gOWEeyz8Dq</td>
+    </tr>
+    <tr>
+        <td>98</td>
+        <td>RT @michellemalkin: 55 Scholars Protest AP U.S. History Changes ==&amp;gt; http://t.co/4V0PQ17nLw #APUSH</td>
+    </tr>
+    <tr>
+        <td>78</td>
+        <td>RT @WayneDupreeShow: Obama is running this country without Congress and everyone needs to realize that via @sendavidperdue #Dream15</td>
+    </tr>
+    <tr>
+        <td>73</td>
+        <td>RT @SpeakerBoehner: 95 yrs ago, #GOP majorities in the House &amp;amp; Senate passed the 19thAmendment &amp;amp; finally gave women the right to vote. http…</td>
+    </tr>
+    <tr>
+        <td>62</td>
+        <td>RT @Cameron_Gray: This is perfect, and should be a bumper sticker<br><br>“Immigration without assimilation is invasion” - #BobbyJindal<br><br>#Dream15 …</td>
+    </tr>
+    <tr>
+        <td>51</td>
+        <td>RT @WayneDupreeShow: Democrats are getting away with saying they champion the working class and that's a lie via @sendavidperdue #Dream15</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (09/01/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['maggie82_tweets.tsv', 'maggie82_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

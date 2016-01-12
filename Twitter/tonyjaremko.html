@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/TonyJaremko">TonyJaremko</a></td>
+        <td>Texas</td>
+        <td>Former editor, occasional writer, constant loud mouth. Mortgage loan officer (NMLS: 1152131) Need to buy or refi? I'll get it done.</td>
+        <td>2,680</td>
+        <td>932</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>TonyJaremko</span> engages 35% (retweets/tweets) and has average resonance of 0.84</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#WinterClassic</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#RockinEve</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#cowboys</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Stars</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#TeamUSA</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#SpezDispenser</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#cawlidgehawkey</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#LRT</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#GoStars</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#4L</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>techievetter</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>jamiesportstalk</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>dfwticket</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>jrlind</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>billyleroy_</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>wyshynski</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>tweetgrubes</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>gjspittle</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>twitter</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>david_w29</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The #SpezDispenser sets up Janmark!</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I mean...how the hell do you not have Dropkick Murphys performing? Hell...gimme Denis Leary. #WinterClassic</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Congratulations to @DallasStars General Manager, Jim Nill on his most deserved 5-year extension.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>@PeteBlackburn I agr</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>You love the football...why? Physicality? Hockey has more..all without the nap-inducing 30-second huddles after every play.</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Wow! Pieces of shit. RT @dfwticket: Stars hockey is about to be on but never fear all shows back tomorrow for Cowboys season over talk</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Way to go, @BillyLeRoy_  https://t.co/zheBimLvaq</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>WWWHHHAAAA? No way! Kadri taking out a top player? Where's my shocked face? RT @FriedgeHNIC: John Gibson hurt after collision with Kadri</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>This person has every right to vote...please keep this in mind when trying to figure out what's wrong with America. https://t.co/YqFfGcuB1l</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>The right one...damn underscores. Click and then click follow: @BillyLeRoy_</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Stars</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#USAWJC</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#SaraStrong</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#txstars</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#NHL</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#HappyNewYear</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#WJC2016</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#stlblues</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#NYRangers</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#GoStars</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>wyshynski</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>dallasstars</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>seanshapiro</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>unt_zta</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>usahockey</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>dentonpd</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>pr_nhl</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>peteybeats</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>usahockeyscores</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>peteblackburn</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>2459</td>
+        <td>RT @JordanSpieth: Would rather this year not end...</td>
+    </tr>
+    <tr>
+        <td>2441</td>
+        <td>RT @MLB: You know Junior’s gotta rock it backwards. #HOF https://t.co/MpxXxCcH3a</td>
+    </tr>
+    <tr>
+        <td>1935</td>
+        <td>RT @FreshBrewedTees: Billy Vegas. <br><br>https://t.co/LlRfdsRORS <br><br>RETWEET https://t.co/70px10ydn0</td>
+    </tr>
+    <tr>
+        <td>1858</td>
+        <td>RT @EddieRobson: Can't believe Twitter is considering introducing a 10,000 character limit, I'm sure if they actually spoke to their users …</td>
+    </tr>
+    <tr>
+        <td>1699</td>
+        <td>RT @DepressedDarth: The Empire's Employee of the Month https://t.co/LsLaNoN59f</td>
+    </tr>
+    <tr>
+        <td>1445</td>
+        <td>RT @Steverukavina: Snowy owl spotted soaring on Montreal traffic camera<br>https://t.co/3sURwZ4r7c https://t.co/ea2c1YgN6H</td>
+    </tr>
+    <tr>
+        <td>636</td>
+        <td>RT @NWHL_: An update on the status of @TheBostonPride forward Denna Laing https://t.co/fXe6b8eH9m https://t.co/oeEMJKZ80b</td>
+    </tr>
+    <tr>
+        <td>540</td>
+        <td>RT @Panthers: @FlaPanthers Nice work https://t.co/NXd1HsGkDV</td>
+    </tr>
+    <tr>
+        <td>500</td>
+        <td>RT @USAHockeyScores: End of Game: USA defeats Sweden 8-3 to claim the bronze medal at the World Junior Championship #USAWJC</td>
+    </tr>
+    <tr>
+        <td>315</td>
+        <td>RT @DallasStars: Here's to you, #Stars fans.<br><br>Have a safe and Happy New Year! #GoStars https://t.co/qHY7ZQX23W</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (09/01/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['TonyJaremko_tweets.tsv', 'TonyJaremko_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

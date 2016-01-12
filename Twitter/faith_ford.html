@@ -1,0 +1,543 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/Faith_Ford">Faith_Ford</a></td>
+        <td>Los Angeles</td>
+        <td>Actress, producer, Louisiana native, Author, American Dingo mom &amp; Campion's wife.</td>
+        <td>23,525</td>
+        <td>1,020</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>Faith_Ford</span> engages 64% (retweets/tweets) and has average resonance of 2.40</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Louisiana</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#carpoolers</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#ourlilcreek</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#grateful</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#justiceforstormlolaandbuster</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>peepsmagoo</td>
+        <td>33</td>
+    </tr>
+    <tr>
+        <td>urgentpart2</td>
+        <td>28</td>
+    </tr>
+    <tr>
+        <td>goldbearex</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>alikat747</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>chenoite</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>thinkprogress</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>mamasurvey365</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>csb_22</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>cjfish31</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>dontignoretruth</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Bill de Blasio: Stop NYC Animal Control Centers from killing animals - Sign the Petition! https://t.co/9ZQ4V49n54 via Change Plz Sign &amp;amp; RT🐾</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Have a Happy 2016 blessed with precious moments in nature to pause and reflect..🙏🏻 #ourlilcreek #Louisiana #grateful https://t.co/rS75P2tjGr</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>@giselle1900 @PeepsMagoo @Jackie34563177 @ERrisk @_AnimalAdvocate @The_Animal_Team @ruthmen @dolphinshelp @Canine_Rights Bless these two!🐾🙏🏻</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Happy 2016!! Whoop!! Love, Mama Pat, Campion, me, Belle &amp;amp; Buddy! 🎉🎉🎉🎉🎉 https://t.co/CMx0tHStF5</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>https://t.co/xsSqhwlD7n These 3 lil Angels r family &amp;amp; need a forever home together! Plz RT! ❤️🐾🙏🏻</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Department of Defense : Don't ban my dog from military housing just because of her breed. - Sign the ... https://t.co/IqlFS5AaAh via Change</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>https://t.co/4zRSHZvDhr</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Demotte police department: After 3 husky family members are murdered the killers still FREE - Sign th... https://t.co/ELCDXd8s5x via Change</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>@elcastazgoo @PeepsMagoo @giselle1900 @Jackie34563177 @ERrisk @_AnimalAdvocate Yayyyyy!! So awesome!! 🙏🏻❤️🐾🐾🐾🐾😘</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Enact Legislation Outlawing Ivory and Rhino Horn Products in Ohio - Sign the Petition! https://t.co/tcnYvaTaIU via Change</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Dogs</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>#nkla</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>#RESCUE</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#love</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#Adopt</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#foster</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#NYC</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#Chihuahua</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#Save</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#PLEDGE</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>urgentpart2</td>
+        <td>63</td>
+    </tr>
+    <tr>
+        <td>urgentpodr</td>
+        <td>42</td>
+    </tr>
+    <tr>
+        <td>gaywehodogs4u</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>faith_ford</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>chenoite</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>dontignoretruth</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>csb_22</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>cjfish31</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>cbssunday</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>gdad1</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>534</td>
+        <td>RT @dodo: .@RickyGervais honors dog who nabbed 115 rhino poachers - way to go! https://t.co/bbzXN50s7P https://t.co/TF7Rim3iE3</td>
+    </tr>
+    <tr>
+        <td>467</td>
+        <td>RT @peta: Chickens are one of the most abused animals on the planet. No one should have to endure this in 2016. https://t.co/ZkdgoZK4R5</td>
+    </tr>
+    <tr>
+        <td>398</td>
+        <td>RT @PhotosMaysa: #غرد_بصورة <br>♧♧♧♧♧ https://t.co/yc639GkSWi</td>
+    </tr>
+    <tr>
+        <td>329</td>
+        <td>RT @SeriouslyClose: Dog Who Was Terrified Of Human Touch, Now Loves Being Petted https://t.co/ku8YjQaAdR https://t.co/KqO0I1fr3v</td>
+    </tr>
+    <tr>
+        <td>302</td>
+        <td>RT @MacyGraysLife: Natalie Cole was one of the best singers ever and an extraordinary person.<br>I miss her big time. https://t.co/xprGSERwuY</td>
+    </tr>
+    <tr>
+        <td>248</td>
+        <td>RT @UrgentPart2: PEPSI - A1060507 - TO BE DESTROYED 01/04/16   ** NEW HOPE RESCUE ONLY ** AVERAGE RATED ...<br>https://t.co/9eTZHeDzvY https:/…</td>
+    </tr>
+    <tr>
+        <td>230</td>
+        <td>RT @peta: Tryna find that perfect cuddle spot like... #FriendsNotFood https://t.co/ZvexNKVAuc</td>
+    </tr>
+    <tr>
+        <td>223</td>
+        <td>RT @giselle1900: CODE RED!BONDED PAIR DUMPED IN KILL SHELTER!NEED OUT ASAP🙏🏻🆘😭 https://t.co/7KDR9WfPkM #TX @Jackie34563177 @ERrisk https://…</td>
+    </tr>
+    <tr>
+        <td>220</td>
+        <td>RT @UrgentPart2: TO BE DESTROYED 1/04/16 - Please Share!<br><br>https://t.co/6HYiqjrRYS https://t.co/54CxywrtQP</td>
+    </tr>
+    <tr>
+        <td>217</td>
+        <td>RT @UrgentPart2: ZENA - A1062304 - TO BE DESTROYED 01/07/16 When her owner brought 5 year old Zena in ...<br>https://t.co/OK9wKEWRgP https://t…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (10/01/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['Faith_Ford_tweets.tsv', 'Faith_Ford_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>
