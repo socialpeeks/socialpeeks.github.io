@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/Heathermg1973">Heathermg1973</a></td>
+        <td>Calgary, Alberta, Canada</td>
+        <td>Writer... mistake maker... runner.. real human with flaws... mother..... over thinker... manager....and sometimes I bake cookies</td>
+        <td>3,293</td>
+        <td>3,055</td>
+    </tr>
+</table><h2>Analysis based on 587 most recent tweets</h2>
+<h2><span>Heathermg1973</span> engages 14% (retweets/tweets) and has average resonance of 0.19</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#YYC</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#blog</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#InternationalWomensDay</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#possakfeis</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Banff</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#TrueStory</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#HappyBirthday</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#CalgaryFlames</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#INSOMNIA</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#NationalDrinkWineDay</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>nuclear_wessle</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>nscray</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>cccdynapro</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>margodegange</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>lizzypooh86</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>joyceon4th_yyc</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>nicola1678</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>nicolevsanchez</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>oprah</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>dorothyinez</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>https://t.co/rkC0lHZs3c</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>https://t.co/z5Syz770F9</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Very excited to be one of the 7 writers chosen for an upcoming book! Stay tuned for more! @SplendorPublish @CCCDynaPro @MargoDeGange</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>#womenrock @ShirleyWalmsley @Lizzypooh86 @MargoDeGange @dorothyinez @F2FHeather @Melanie_Canada #InternationalWomensDay</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/yFRhrqumjJ</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/wElRX07dMD</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/tYgHjXyARn</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/cxG0wsMrdK</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/X5C5bys9gO</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>https://t.co/WMf9xMiTDa</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Oscars</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#mindfulness</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#SingleLifeIn3Words</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#innerpeace</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#WhyICouldNeverBeCanadian</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#pinkshirtday</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Houston</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#yyc</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#TeamLeo</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#writerslife</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>outsidemagazine</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>heathermg1973</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>cccdynapro</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>splendortalk</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>forbes</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>911well</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>tedtalks</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>time</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>splendorpublish</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>melanie_canada</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>5903</td>
+        <td>RT @tumblr: FINALLY #Oscars #TeamLeo https://t.co/obc33ur9VU</td>
+    </tr>
+    <tr>
+        <td>1565</td>
+        <td>RT @chelseahandler: hey @realDonaldTrump. Do you want to come over and watch #chelseadoesracism with me? you can even wear a white hat I'll…</td>
+    </tr>
+    <tr>
+        <td>631</td>
+        <td>RT @TEDTalks: "You cannot selectively numb emotion. You can't numb hard feelings without numbing joy, gratitude, happiness." https://t.co/C…</td>
+    </tr>
+    <tr>
+        <td>424</td>
+        <td>RT @TEDTalks: What makes a great leader? A recommended reading list: https://t.co/UNGtm0AeBM</td>
+    </tr>
+    <tr>
+        <td>255</td>
+        <td>RT @EnteringAeons: #WhyICouldNeverBeCanadian I'm sorry, I can't think of anything, lol. https://t.co/V8bEKKuJsK</td>
+    </tr>
+    <tr>
+        <td>189</td>
+        <td>RT @nytimes: The parent-child discussion that so many dread: Donald Trump https://t.co/4v0rWr3sE4 https://t.co/Z6oqA5Mgp9</td>
+    </tr>
+    <tr>
+        <td>180</td>
+        <td>RT @Forbes: A poor work-life balance and working after you leave the office can add additional stress: https://t.co/64RrHzi9Qp https://t.co…</td>
+    </tr>
+    <tr>
+        <td>148</td>
+        <td>RT @TIME: Relive the romance of Nancy and Ronald Reagan in pictures https://t.co/YW8DrMR8Re https://t.co/cQEL9UBSLH</td>
+    </tr>
+    <tr>
+        <td>147</td>
+        <td>RT @AgainstSuicide: “Everyone has baggage. You just have to find someone that loves you enough to help you unpack.”</td>
+    </tr>
+    <tr>
+        <td>145</td>
+        <td>RT @TIME: "Can we all just admit that Valentine’s Day is terrible?" https://t.co/NJlE1Ipn8l</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['Heathermg1973_tweets.tsv', 'Heathermg1973_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

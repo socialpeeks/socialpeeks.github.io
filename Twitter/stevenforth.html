@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/StevenForth">StevenForth</a></td>
+        <td>Vancouver BC </td>
+        <td>Trying to understand then take a few actions to leave things better. Also at  @TeamFitCo</td>
+        <td>5,701</td>
+        <td>5,100</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>StevenForth</span> engages 32% (retweets/tweets) and has average resonance of 0.89</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#pricing</td>
+        <td>62</td>
+    </tr>
+    <tr>
+        <td>#innovation</td>
+        <td>53</td>
+    </tr>
+    <tr>
+        <td>#design</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>#Toronto</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>#Vancouver</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>#strategy</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#SaaS</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#B2B</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#startups</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#Moodle</td>
+        <td>9</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>marsdd</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>openviewlabs</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>linkedin</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>stevenforth</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>leveragepoint</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>qz</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>sharethis</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>dilipsoman</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>priceintel</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>lambdasolutions</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Future-Proof Your Revenue Model. Pricing Innovation Seminar in Toronto February 25. #pricing #innovation https://t.co/tHY665rM9n</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>The Art and Science of Tiered Pricing: Strategies to Optimize for Buyer Persona https://t.co/mQ6qPkKlzR #pricing #SaaS</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Strategy is about making tradeoffs, innovation is about breaking tradeoffs. @meraynor at @MaRSDD #innovation</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>How to Capture the Right Value Metrics to Accurately Price Your Product https://t.co/6j90jhRVXd #pricing #innovation</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Your revenue model is open for disruption. Join us in Toronto Feb 24 to learn how to respond. https://t.co/dt5ELsHmBR #Toronto #innovation</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The best way to price your product is to prove it works, the IoT is making that possible by @Rickspenc https://t.co/Vc93xUGrE8 #pricing</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Pricing insight from @dilipsoman set your reference price relative to value and not cost. @MaRSDD #pricing #innovation</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>How to Capture the Right Value Metrics to Accurately Price Your Product https://t.co/bfv1YCrCys #pricing #bigdata</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>How to Capture the Right Value Metrics to Accurately Price Your Product https://t.co/Gq5PBZiZv9 #pricing #startups</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Evaluating the Impact of eLearning - Kirkpatrick's Model https://t.co/wSwIV7ikNu #elearning #Moodle</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#skills</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td>#consulting</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#teams</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#innovation</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#leadership</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#strategy</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#Vancouver</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#BCTECHSummit</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#HRTech</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#projects</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>teamfitco</td>
+        <td>72</td>
+    </tr>
+    <tr>
+        <td>bcic</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>linkedin</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>marsdd</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>centrea</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>balaiyer</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>rogerlmartin</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>stevenforth</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>techvibes</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>adhaliwal</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>1454</td>
+        <td>RT @CultureAmp: Millennials will outnumber the Boomers this year. What does this mean for the workplace? https://t.co/3NQKnXqHVl</td>
+    </tr>
+    <tr>
+        <td>80</td>
+        <td>RT @gillianshaw: Coding in the classroom, for every BC student K-12 announced by @christyclarkbc at #BCTechSummit https://t.co/Bsv0YfEpJw</td>
+    </tr>
+    <tr>
+        <td>52</td>
+        <td>RT @Atul_Gawande: "About 65% of the est. 1.2 million Americans with H.I.V. are not on treatment" - @DrFriedenCDC sounds the alarm https://t…</td>
+    </tr>
+    <tr>
+        <td>41</td>
+        <td>RT @CKNW: Kerry Jang on Trump tower "We do not want to the Trump brand in #Vancouver as far as I am concerned it is a beacon of racism now.…</td>
+    </tr>
+    <tr>
+        <td>39</td>
+        <td>RT @bctia: Congratulations to the Government of BC on the launch of the $100M #BCTech Fund! https://t.co/FSYsae7dw3 https://t.co/SwXWoVOiPg</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>RT @rabbleca: It's nearly 2016. Time for misogynistic political commentary to stop. https://t.co/s8v0tg2C8A https://t.co/ltI4q1wtuL</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>RT @bcic: ThoughtExchange wins the Innovation Showcase at the #BCTECHSummit 2016 https://t.co/c0pnUkAPBz https://t.co/ycrAuP6893</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>RT @oristand: We’re finally live and couldn’t be more excited! A big thank you to @FastCompany for the mention! https://t.co/W4us4jZbtm</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>RT @MaRSDD: Why corporate leaders need to get comfortable with business model innovation: https://t.co/3mcqmjwogY #MaRSVerge https://t.co/0…</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @techvibes: How to Build BC into a World Leader in Tech and Innovation<br>https://t.co/LobEDYhlQr #BCTECHSummit</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['StevenForth_tweets.tsv', 'StevenForth_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

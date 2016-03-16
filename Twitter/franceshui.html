@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/FrancesHui">FrancesHui</a></td>
+        <td>Vancouver, Canada &amp; The World</td>
+        <td>Top 100 #Influencers &amp; #Brands: https://t.co/SOP10y9ZIM #SocialSelling Evangelist | Personal #Branding Strategist | #SocialMedia #Marketing | Lifestyle #Blogger</td>
+        <td>12,712</td>
+        <td>7,378</td>
+    </tr>
+</table><h2>Analysis based on 562 most recent tweets</h2>
+<h2><span>FrancesHui</span> engages 25% (retweets/tweets) and has average resonance of 2.05</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#marketing</td>
+        <td>42</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>#content</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>#Periscope</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>#YVR</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>#growthhacking</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>#CabrioletGala</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#socialmedia</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#socialselling</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#Vancouver</td>
+        <td>14</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>brianjesselbmw</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td>shawnhook</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>franceshui</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>builder00</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>chap1028</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>momsncharge</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>meowpreneur</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>holtrenfrew</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>buzzy_nfamous2u</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>mrspinckney</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>142</td>
+        <td>READ My Interview &amp;amp; Get Biz Tips: https://t.co/75RHVDXb0X<br>#influencerchat #marketing #growthhacking #socialselling https://t.co/vAWLkxK1jG</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Learn from criticism. "Take criticism seriously; but not personally." Hillary Clinton #entrepreneurship https://t.co/Ccw0lb9ZwJ</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Gain wisdom from experience. "Nothing is a waste of time if you use the experience wisely" Auguste Rodin #growth https://t.co/ZtejIe5Ms0</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>1 MORE SLEEP TILL THIS PARTY! #CabrioletGala w/ #fashionshow #music #food #drinks #DJ #cars https://t.co/ZZ6QjxCNGf https://t.co/zeIoTS07Zi</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>The only time you should ever look back, is to see how far you've come. <br><br>If you dwell on the… https://t.co/hmOzhRRrtU</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>I'm on this list!<br>#SocialSelling 2016: Top 100 #Influencers &amp;amp; #Brands https://t.co/Rk1Nu5i6SW<br>#socialmedia #digitalmarketing #growthhacking</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>How to make your business more visible in a social world &amp;gt;&amp;gt; https://t.co/9PeNSCzwGH #content #marketing #help https://t.co/18RsXwrY27</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Congratulations, Sam! 😊❤️🇨🇦<br><br>#InfluencerMarketing #socialselling #SocialMediaMarketing #GrowthHacking #influencer  https://t.co/5mjz1LC6cz</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>@EmekaGift Thanks for sharing about #growthhacking. Have a great Monday. :-) 🔹🆓Grow followers ➪ https://t.co/OeU3CiHvYS 🆓🔹</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>WATCH My #Periscope #Videos! https://t.co/mgaeE2aak6<br><br>#marketing #socialmedia #influencerchat #growthhacking #VIP #events #Vancouver #YVR</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#ShareTheLove</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#Periscope</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#YVR</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#CabrioletGala</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#katch</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#socialselling</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#socialmedia</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#InternationalWomensDay</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#marketing</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#GrowthHacking</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>franceshui</td>
+        <td>65</td>
+    </tr>
+    <tr>
+        <td>copromote</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>inspirationf</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>lewislaw1max</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>abundprosperity</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>shanegibson</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>ledonaycaguer</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>fivparis</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>mikaelpittam</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>katchhq</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>505</td>
+        <td>RT @raultiru: A few Great Reasons to use Visuals. https://t.co/jF5iOAS4YQ via https://t.co/8Zyuq7kkVd <br><br>#WebDesign #GraphicDesign https://t…</td>
+    </tr>
+    <tr>
+        <td>447</td>
+        <td>RT @lastbabyboomer: #SocialSelling Takeaways from @Timothy_Hughes of @Oracle https://t.co/fcuv14YNM1  @NeedNudge https://t.co/JVx00cQp38</td>
+    </tr>
+    <tr>
+        <td>311</td>
+        <td>RT @billboard: .@ScooterBraun on the ups &amp;amp; downs of millennial oversharing: "Everyone is a self-promoter" https://t.co/EnWBm3l1Ay</td>
+    </tr>
+    <tr>
+        <td>301</td>
+        <td>RT @periscopeco: Explore the world LIVE, right from your timeline on https://t.co/wGsMDlb00C. Now on Web 🌐 #periscope https://t.co/KvoGM1LU…</td>
+    </tr>
+    <tr>
+        <td>285</td>
+        <td>RT @lastbabyboomer: #SocialSelling at Sunrise with @Jill_Rowley #B2B https://t.co/DMt66xJFka via @NeedNudge https://t.co/UwLS1hrBQb</td>
+    </tr>
+    <tr>
+        <td>234</td>
+        <td>RT @raultiru: How to get 500+ Retweets Without Spending a Penny<br>https://t.co/czyEAHqbHT<br>#GrowthHacking #SocialMedia #Twitter https://t.co/N…</td>
+    </tr>
+    <tr>
+        <td>197</td>
+        <td>RT @WBB_13: 5 Quick Ways To Use #Instagram To Get More Customers https://t.co/nDC8cFSQFu</td>
+    </tr>
+    <tr>
+        <td>174</td>
+        <td>RT @copromote: 12 Secrets to Make Your Content Shareable, thank you @Inspirationf: https://t.co/iGfBKSdiLo https://t.co/wzgHB13gsT</td>
+    </tr>
+    <tr>
+        <td>144</td>
+        <td>RT @WBB_13: Snapchat Has Grown Up: What You Need To Know As A Marketer https://t.co/nRfhpbZzkd</td>
+    </tr>
+    <tr>
+        <td>139</td>
+        <td>RT @copromote: Featured CoPromoter @JMHHACKER shares his top social media tips in our latest interview! https://t.co/e5rkbvOGra https://t.c…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['FrancesHui_tweets.tsv', 'FrancesHui_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

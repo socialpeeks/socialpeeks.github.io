@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/raehanbobby">raehanbobby</a></td>
+        <td>Toronto, Canada, US</td>
+        <td>4x @TEDx Speaker | Inc Mag Top 100 Heart-Leader, Networking, Personal Brand &amp; Parenting. Author, @HuffingtonPost Writer, TV Host, Comedy Actor, GMAT pro &amp; Daddy</td>
+        <td>349,440</td>
+        <td>209,649</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>raehanbobby</span> engages 11% (retweets/tweets) and has average resonance of 10.03</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#leadership</td>
+        <td>44</td>
+    </tr>
+    <tr>
+        <td>#politics</td>
+        <td>37</td>
+    </tr>
+    <tr>
+        <td>#quotes</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>#Gratitude</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#parenting</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#humor</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#cdnpoli</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#family</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#smallbiz</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#entrepreneur</td>
+        <td>8</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>bodyinvest1</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>annavitals</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>dypbto</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>seyopa</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>nsb_speakers</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>garyvee</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>cerealstartup</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>baddogtheatre</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>johnmoranbuzz</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>londonedc</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>81</td>
+        <td>“Help people, even when you know they can’t help you back” ~ YES!! This is so powerful.<br>#leadership #quotes https://t.co/SJ0Dx5Z2nS</td>
+    </tr>
+    <tr>
+        <td>74</td>
+        <td>“How Not to Be Hard on Yourself” ~ A fantastic #leadership #infographic by @annavitals. Thoughts? https://t.co/gPBROjQsBf</td>
+    </tr>
+    <tr>
+        <td>52</td>
+        <td>"Difference between a boss &amp;amp; a leader."<br>#leadership #infographic https://t.co/fFpZji4ZyW</td>
+    </tr>
+    <tr>
+        <td>41</td>
+        <td>"Pride is concerned with who is right.<br>Humility is concerned with what is right"<br><br>#leadership #quotes https://t.co/vvasvabdrA</td>
+    </tr>
+    <tr>
+        <td>38</td>
+        <td>“Help people, even when you know they can’t help you back” ~ YES!! This is so powerful.<br>#leadership #quotes https://t.co/isbKi3GTtC</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>"No matter who you vote for, this will be a historic election." ~ Haha cute meme on U.S. #Politics. #humor https://t.co/fr9a3GVu6n</td>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td>"If people never did silly things, nothing intelligent would ever get done"<br>Ludwig Wittgenstein<br>#leadership #quotes https://t.co/Z0Q4QdPj2Q</td>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td>"I have to say, I've never seen so many Americans so excited about the visit of a Canadian prime minister" ~ Obama https://t.co/MMFwoFH2Yq</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>"It Was Never a Dress" ~ LOVE!<br>To every SuperWoman in my life.<br><br>#IWD2016 #InternationalWomenDay <br>#GenderParity https://t.co/NmhNj1JleL</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>Happy Rounded Pi Day everyone! :)<br><br>#PiDay #PiDay2016 https://t.co/9vgnUe8sps</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#leadership</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#quotes</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#InternationalWomenDay</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#inspiration</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#IWD2016</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#LightenTheLoad</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#kimklinemusic</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#pocchat</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Human</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>raehanbobby</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>10millionmiler</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>seyopa</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>alphabetsuccess</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>robertwcullen</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>hpcaparents</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>meaccongress</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>wellbelove</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>ybell2014_bell</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>circa13579</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>388</td>
+        <td>RT @ValaAfshar: Her code got humans on the moon —and invented software itself.<br><br>#InternationalWomenDay https://t.co/8VLckKs7WQ https://t.co…</td>
+    </tr>
+    <tr>
+        <td>303</td>
+        <td>RT @brainpickings: A supreme celebration of #InternationalWomenDay: Maya Angelou recites "Phenomenal Woman" https://t.co/sp7hGpU5xC https:/…</td>
+    </tr>
+    <tr>
+        <td>147</td>
+        <td>RT @my_SoJo: Happy #IWD2016! Today, thanks to @RBC &amp;amp; @Futurpreneur, for every RT we receive $2 up to $5000. We need your help! https://t.co…</td>
+    </tr>
+    <tr>
+        <td>110</td>
+        <td>RT @InspiringThinkn: A good leader inspires people to have confidence in the leader.... Eleanor Roosevelt #leadership https://t.co/PvbCL1yx…</td>
+    </tr>
+    <tr>
+        <td>62</td>
+        <td>RT @alphabetsuccess: Help people, even when you know they can't help you back.<br><br>HT @raehanbobby #relationships https://t.co/bgrzLvcn7o</td>
+    </tr>
+    <tr>
+        <td>56</td>
+        <td>RT @realredgreen: If all it takes in politics is a tv show and an attitude that far outweighs actual ability, perhaps I should be running f…</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>RT @spencerrayner: Difficult Roads Often .... @10MillionMiler #kimklinemusic @davidkwilliams  RT @raehanbobby @alphabetsuccess https://t.co…</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>RT @10MillionMiler: That's The Point Of Being #Human. @10MillionMiler #quote #inspiration #leadership RT @Upworthy @raehanbobby https://t.c…</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>RT @alphabetsuccess: Difficult roads often lead to beautiful destinations. - #quote<br><br>via @raehanbobby<br><br>https://t.co/HEf6o5DSPo</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>RT @10MillionMiler: Every Day Is A Chance.. @raehanbobby @10MillionMiler #quote #live #leadership #inspiration https://t.co/s1hYSyNHsm</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['raehanbobby_tweets.tsv', 'raehanbobby_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

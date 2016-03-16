@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/jennyleeSD">jennyleeSD</a></td>
+        <td>Nova Scotia</td>
+        <td>Names her pets after American presidents. Collection of linked flash fictions, Border Markers, forthcoming from @NeWestPress (2016)</td>
+        <td>1,797</td>
+        <td>2,049</td>
+    </tr>
+</table><h2>Analysis based on 597 most recent tweets</h2>
+<h2><span>jennyleeSD</span> engages 30% (retweets/tweets) and has average resonance of 0.96</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#p2p16</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#amwriting</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Hamilton</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#MentalHealthMatters</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#amreading</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#holyyesplease</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Trump</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Pitchwars</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#DVPit</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#ThoughsWhileDrivingAcrossCountryInWinter</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>writeasrain_</td>
+        <td>52</td>
+    </tr>
+    <tr>
+        <td>rfaitheditorial</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>gemblackthorn</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>brendadrake</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>damiella</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>fountainwriter</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>briannashrum</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>tracycgold</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>rlynn_solomon</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>kurestinarmada</td>
+        <td>9</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>One more reminder folks, the kind #p2p16 editors do work for hire. I know money is always tight. If you can afford it, you can work w/ them!</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>YES! &amp;amp; if you aren't selected and you've bonded with an editor, they work for hire. #p2p16  Other editors exist too. https://t.co/oUWVntsz5r</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>#SouthDakota friends: <br><br>Seriously. #Shakespeare 's First Folio is coming. Come visit! https://t.co/yXw6hLGwTc</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I have #hope for 2016. But to hope means to be active, involved, to care. Please hope with me for a better year for all.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Alternative jobs for PhDs of English, final semester version:<br><br>-avocado farmer <br><br>(end of list.)<br><br>#gradschoolproblems</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Yes! Love @LeslieChivers.  https://t.co/Iguo8v56rU</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Why is inventing and developing teleportation not a serious election issue?<br><br>#ThoughsWhileDrivingAcrossCountryInWinter</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>MCDonald's is closing in town tomorrow yet my university can't be bothered. Weather so bad MCD's closes (!!!!) but a uni won't? #ForSerious</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>I was a PL. Katimavik changed my life, too. The lives of my participants &amp;amp; our community, certainement!! #BringBackKatimavik @JustinTrudeau</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>I understand Americans are scared. The world is scary. But #Trump and hate and racism and ugliness are not the answer.</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#p2p16</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#TamirRice</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#MSWL</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#BringBackKatimavik</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#DVpit</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#BellLetsTalk</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#KatimaColours</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#amwriting</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#PitchWars</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#diversebooks</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>laurendestefano</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>_joycastro</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>fountainwriter</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>millercallihan</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>jsinsheim</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ismashfizzle</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>justintrudeau</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>patricianels</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>nicoleatone</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>editorstewart</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>19469</td>
+        <td>RT @LibyaLiberty: If you're an American confusedly watching the darkest forces of ur nation rally behind a demagogue-maybe u can understand…</td>
+    </tr>
+    <tr>
+        <td>13504</td>
+        <td>RT @davedittell: CONGRATULATIONS!<br>YOU'VE COMPLETED LIFE!<br>YOU PLAYED AS: white male<br>CHOOSE ONE:<br>A) PLAY TUTORIAL AGAIN<br>B) TRY A HARDER SETTI…</td>
+    </tr>
+    <tr>
+        <td>9678</td>
+        <td>RT @ivan_hernandez: I'm proBernie but would vote Hillary as I am a one issue voter and that issue is not opening the seventh seal and usher…</td>
+    </tr>
+    <tr>
+        <td>8126</td>
+        <td>RT @MapleLeafs: For every tweet/retweet using #BellLetsTalk Bell will donate 5¢ to Canadian mental health initiatives! https://t.co/2UgOsHd…</td>
+    </tr>
+    <tr>
+        <td>5809</td>
+        <td>RT @MsPackyetti: In Ferguson, 150 unarmed black people occupied a blocked off street.  <br><br>We got gassed, sprayed and shot w rubber bullets.<br>…</td>
+    </tr>
+    <tr>
+        <td>5572</td>
+        <td>RT @sahilkapur: This letter pretty much sums up why @BarackObama staked his presidency on Obamacare. https://t.co/UpeRyWwK5j https://t.co/v…</td>
+    </tr>
+    <tr>
+        <td>2890</td>
+        <td>RT @JustinTrudeau: Happy #PiDay! May a love of math, science, discovery (and actual pie) guide you today and every day.</td>
+    </tr>
+    <tr>
+        <td>2045</td>
+        <td>RT @LaurenDeStefano: RT by 2/1 to win this ARC of THE ROSE &amp;amp; THE DAGGER... And yes, the tiny Shazi doll I crocheted IS INCLUDED! https://t.…</td>
+    </tr>
+    <tr>
+        <td>1644</td>
+        <td>RT @kwamerose: #TamirRice was 12. <br>#TamirRice was 12. <br>#TamirRice was 12. <br>#TamirRice was 12. <br>#TamirRice was 12. <br>#TamirRice was 12. <br><br>He …</td>
+    </tr>
+    <tr>
+        <td>1619</td>
+        <td>RT @thenatewolf: "Good luck with your little skits!"<br><br>-Shakespeare's mom.</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['jennyleeSD_tweets.tsv', 'jennyleeSD_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

@@ -1,0 +1,555 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/GlobeSmallBiz">GlobeSmallBiz</a></td>
+        <td>Toronto</td>
+        <td>Report on Small Business from The Globe and Mail. Information and inspiration for Canadian entrepreneurs, startups and small business leaders.</td>
+        <td>76,748</td>
+        <td>349</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>GlobeSmallBiz</span> engages 9.5% (retweets/tweets) and has average resonance of 6.15</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#GlobeSBS16</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#CNDPoli</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Calgary</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#fintech</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#TechTO</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Edmonton</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#smallbiz</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#HamOnt</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>miapearson</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>communitech</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>iamasheeo</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>tiborshanto</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>rotmanschool</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>retailprophet</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>wealthsimple</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>globesmallbiz</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>todmaffin</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>barbarianceo</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td>Federal government launches $50-million fund to boost small-business exports https://t.co/LvH8nQI06R https://t.co/LQWk3jDBG1</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>How startups can create a culture of inclusiveness https://t.co/r2lQHeYiCx @Wealthsimple https://t.co/RUWIoMIYfB</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>Vinyl revival: Canadian company reinvents the record pressing plant https://t.co/IvszilHTG2 https://t.co/YkURf95Moz</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>Inventor who crossed Crocs with golf shoes ran before he could walk https://t.co/1ZNHqXz4XQ @BiionFootwear https://t.co/or0RrN4UH4</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>How a father's love for his ailing son inspired him to reinvent the sneaker https://t.co/IPyWM15YIF https://t.co/mmbltwtsWJ</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>Vinyl revival: Canadian company reinvents the record pressing plant https://t.co/Ivszilqihs https://t.co/YkURf95Moz</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Vinyl revival: Canadian company reinvents the record pressing plant https://t.co/Ivszilqihs https://t.co/YkURf95Moz</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Don’t want to shovel your driveway? There’s an app for that https://t.co/tORXZuFtG7 https://t.co/XhsdlbvSNZ</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Plunging loonie could be boon for startups seeking venture capital https://t.co/vr4crt6EDa https://t.co/2LwDNZmQBE</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Why this New York venture capitalist is investing in Canadian startups https://t.co/93uPOS1wiE https://t.co/krgIgjN8DU</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#GlobeSBS16</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#CCS2016</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#YYC</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#fintech</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#entrepreneurship</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#hamont</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#smallbiz</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#lending</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#startup</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#YYZ</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>globesmallbiz</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>globeandmail</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>sarah_efron</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ncfacanada</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>funding_portal</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>mabelhood</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>mumby</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>chrisizquierdo</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>andreagilbrook</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>devfacto</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>RT @hidrees: I wrote about creating cultures of inclusiveness for the @globeandmail: https://t.co/bZ9HbsKTkl<br>I'd love to hear your thoughts!</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>RT @NCFACanada: Learn about marketplace #lending &amp;amp; #fintech @ #CCS2016 with @Sarah_Efron @Lendified @InvestNextDoor @ThinkingCapCA https://…</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>RT @KatherineHague: Calling all startups! @globeandmail is hosting small biz summits across Canada this spring. Get your tix!#GlobeSBS16 ht…</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>RT @globetoronto: Announcing: @harleyf, COO of Shopify, will be a keynote speaker at #GlobeSBS16. For tickets: https://t.co/iAvPyL6lle http…</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @brucepoontip: Speaking at the Globe &amp;amp; Mail Small Business Summit. Check it out and get your tickets! https://t.co/d1XpQXea5u #GlobeSBS1…</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @beastgaard: Join me at the @globeandmail Small Business Summit https://t.co/LkfFrtnz3K #GlobeSBS16 https://t.co/oM1sP5Lvme</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @TechTorontoOrg: We may have outdone ourselves. @aprildunford @cye @ariel_garten @MikeMcDerment &amp;amp; @sol_orwell hit the stage Feb.8 | http…</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @TECCanada: We couldn't be more excited to be celebrating our 30th anniversary! Read more: https://t.co/OHKt9QThQc #ChairWorld @Vistage …</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>RT @JA_PLM: A balanced article on #entrepreneurship and reality.  It isn't all sunshine and rainbows starting out. https://t.co/TuqeFB5qON</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>RT @mumby: Great speaker lineup for @globeandmail's #SmBiz Summit on May 3. Join us! : https://t.co/iqLPmfoLKP … #GlobeSBS16 #YYZ #entrepre…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['GlobeSmallBiz_tweets.tsv', 'GlobeSmallBiz_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/cheryljmuir">cheryljmuir</a></td>
+        <td>Vancouver / Manhattan</td>
+        <td>Coach. Writer. Speaker. @HuffPostCanada columnist. Founder and CEO of Cheryl Muir Media Company, helping heart-centered entrepreneurs get published online.</td>
+        <td>5,812</td>
+        <td>6,276</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>cheryljmuir</span> engages 13% (retweets/tweets) and has average resonance of 1.80</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Gotham</td>
+        <td>129</td>
+    </tr>
+    <tr>
+        <td>#girlboss</td>
+        <td>31</td>
+    </tr>
+    <tr>
+        <td>#spiritjunkie</td>
+        <td>29</td>
+    </tr>
+    <tr>
+        <td>#solopreneur</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>#NYC</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>#sidehustle</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#webinar</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#entrepreneur</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#miraclesnow</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#womeninbiz</td>
+        <td>8</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>robinlordtaylor</td>
+        <td>31</td>
+    </tr>
+    <tr>
+        <td>gothamtvwriters</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>huffpostcanada</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>gotham</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>seanpertwee</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>realdavidmazouz</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>melyndakalyn</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>clocksnfeathers</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>kukurazy06</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>mister_cms</td>
+        <td>8</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>One of my favourite moments from last night's #Gotham. More scenes with @robinlordtaylor and @mister_CMS please! https://t.co/8gBuXNRt15</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Watching #Gotham being filmed in #NYC!! https://t.co/xQGLDFJVZe</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>There are some things you should never say to an #entrepreneur. Here are five of them.<br><br>https://t.co/3seVvt9f7Z <br><br>#solopreneur #ladyboss</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Having lunch and watching a scene between Bruce + Alfred! 🙏 #grateful <br><br>#Gotham @seanpertwee @realdavidmazouz https://t.co/p2ApPyxw5P</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>“For most people, their spiritual teacher is their suffering. Because eventually the suffering brings about awakening.” - @EckhartTolle</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Watched #Gotham being filmed today in #NYC and then had the chance to meet @seanpertwee aka… https://t.co/Nq08eyUlDc</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The abundance of gifs on Twitter makes me incredibly happy!! #GifParty <br><br>(And you have #Gotham ones too!!) https://t.co/XVoP64yJqj</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Do one thing today that brings you closer to your goal of working for yourself. Don't be a #neverpreneur.<br><br>#girlboss https://t.co/crhNoQwDRl</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Bruce is becoming more Batman by the minute! 🤓<br><br>#Gotham</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>A word of caution to my fellow #spiritjunkie #girlboss sisters! https://t.co/kQe3znZqJ3 <br><br>#SuperSoulSunday #SuperSoulers</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Gotham</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#entrepreneur</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#startup</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#speaker</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#speaking</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#entrepreneurs</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#DigitalMarketing</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#fitfam</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#OnPoint</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#authenticity</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>cheryljmuir</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>huffpostcanada</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>seanpertwee</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>clocksnfeathers</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>gotham</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>iamruby</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>robinlordtaylor</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>janicetomich</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>emmay89</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>suibhne2</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>16834</td>
+        <td>RT @Marissa__Miller: adulthood is emailing "sorry for the delayed response!" back and forth until one of you dies</td>
+    </tr>
+    <tr>
+        <td>3651</td>
+        <td>RT @MattBellassai: @ presidential candidates: what are ur plans to stop future The Bachelors from telling more than 1 girl that they love t…</td>
+    </tr>
+    <tr>
+        <td>399</td>
+        <td>RT @robinlordtaylor: It's proof! Oswald is sane! #Gotham https://t.co/lZPlvNIRmq</td>
+    </tr>
+    <tr>
+        <td>205</td>
+        <td>RT @robinlordtaylor: While all of this is going on, Oswald is just chilling in his cell, flapping his arms, &amp;amp; slamming his head against the…</td>
+    </tr>
+    <tr>
+        <td>144</td>
+        <td>RT @Epic_Women: The smallest act of kindness is worth more than the grandest intention.</td>
+    </tr>
+    <tr>
+        <td>113</td>
+        <td>RT @seanpertwee: Never thought I'd say this but leave Penguin alone, Please ! @Gotham @robinlordtaylor</td>
+    </tr>
+    <tr>
+        <td>85</td>
+        <td>RT @depressionarmy: RT if you believe you're worth the trouble. https://t.co/ySiKP5ncEN</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>RT @AineBelton: There's nothing hard about a strong woman. The softness of femininity is mighty. #InternationalWomensDay</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>RT @olv: Tuesday, March 1 Filming Locations for Fifty Shades of Grey Darker, Empire, Gotham, The Americans &amp;amp; more https://t.co/5xteeeZOTE</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @IAMRUBY: Be whoever the fuck you want to be, and OWN it. <br>Happy #WomensDay XO #iwd2016 https://t.co/rv74conMqb</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['cheryljmuir_tweets.tsv', 'cheryljmuir_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

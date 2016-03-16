@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/Melanie_Canada">Melanie_Canada</a></td>
+        <td>Vancouver Verified Account ®</td>
+        <td>Entrepreneur,Speaker,Activist,CEO-BeautyOfNatureMag #skincare specialist #meerkat #SocialEnterpriseCoaching, Director @TreSkinRXCanada https://t.co/QTfwVbER0R</td>
+        <td>6,491</td>
+        <td>6,467</td>
+    </tr>
+</table><h2>Analysis based on 594 most recent tweets</h2>
+<h2><span>Melanie_Canada</span> engages 29% (retweets/tweets) and has average resonance of 0.87</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#snapchat</td>
+        <td>64</td>
+    </tr>
+    <tr>
+        <td>#meerkat</td>
+        <td>28</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>#following</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>#Twitter</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#socialmedia</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#RT</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#anchor</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#InternationalWomensDay</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#URock</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>joewilsontv</td>
+        <td>44</td>
+    </tr>
+    <tr>
+        <td>miweapp</td>
+        <td>32</td>
+    </tr>
+    <tr>
+        <td>melanie_canada</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>themalia</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>andrewshaman</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>seanseale</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>aeazy5</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>talentedmrsalas</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>krazynate22</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>jsneedles</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>The MelanieStar  Daily is out! https://t.co/OxklznXr6R Stories via @LuisALeonB @BeaconHill09 @MassMan44</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>#InternationalWomensDay #URock @LivingChic @vintagepath @MammaGardner @AMomBlogs @ChefLizette1 @Tiffy4u @thefunkyfairy @Mare331 @TheMalia</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>You were meant to be great<br>You were meant to be a light<br>Your purpose is in the breath you breath &amp;amp; what makes you stand out and come to life</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Watch @TheMalia #VirtualReality #podcast and interviews https://t.co/LSwk0Ub7ba know more about the latest #tech revolutionary technology</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The MelanieStar  Daily is out! https://t.co/pyZ9XhTDUY Stories via @saibef @DuaneABentley @Poet_Moglica</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Thank you everybody who #Followed me  on #twitter &amp;amp; #snapchat <br>It was a great day of spring cleaning &amp;amp; networking https://t.co/s0mpkTfeGG</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Listen to "Who's on #snapchat mine is melaniecanada so what's your snapchat username? #snapchatsong #loveit" by Mel https://t.co/16hoNT6E3L</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Did you notice most people want to be anywhere but not where they are now? Plan for tomorrow,enjoy today,this moment will never happen again</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Be Confident In Your Content <br>Celebrate The Art of Creativity<br>Learn To Admire Without Jealousy<br>#socialmedia #share #like #RT #begreat</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>@TheMalia I have no idea the VR connection with @PencilsOfPromis and @johnleedumas but it looks super cool #connect https://t.co/sdLEMdbjK0</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#meerkat</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#socialmedia</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#NoLetUp</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#InternationalWomensDay</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#askgaryvee</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Marketing</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Snapchat</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#RonR</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#ArtofPeople</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>melanie_canada</td>
+        <td>50</td>
+    </tr>
+    <tr>
+        <td>vintagepath</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>cheflizette1</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>garyvee</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>themalia</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>livingchic</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>seanseale</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>shawnflynnsales</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>yourfragrancess</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>joewilsontv</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>620</td>
+        <td>RT @MarketingAI: The Global Marketing Editorial Calendar http://t.co/UQ5WyipuSb #contentmarketing #featurefriday http://t.co/b6bNA3LJLy</td>
+    </tr>
+    <tr>
+        <td>396</td>
+        <td>RT @udemy: Want to take your passion and turn it into a brand? Learn from Gary Vaynerchuk's expertise in his new online course. https://t.c…</td>
+    </tr>
+    <tr>
+        <td>252</td>
+        <td>RT @tailopez: This is when you have to think deeply to come to the right conclusion. #walkorstay https://t.co/mSBx2NRRgO</td>
+    </tr>
+    <tr>
+        <td>151</td>
+        <td>RT @johnrampton: The new source of power is not money in the hands of a few, but information in the hands of many. – John Naisbitt</td>
+    </tr>
+    <tr>
+        <td>107</td>
+        <td>RT @sensiblefolk: If you can't embrace your core values and allow them to drive your decisions, it might be time to rethink those core valu…</td>
+    </tr>
+    <tr>
+        <td>104</td>
+        <td>RT @TedRubin: Stop worrying about what's next &amp;amp; execute on what's now! #RonR... #NoLetUp! https://t.co/gEaDDEtsRw https://t.co/6vz3xo0QOz</td>
+    </tr>
+    <tr>
+        <td>91</td>
+        <td>RT @911well: One of the best SuperFoods - OATS - Many Health Benefits #Nutrition #Diet #MindBody #Wellness #Health https://t.co/wtxazznJyY</td>
+    </tr>
+    <tr>
+        <td>75</td>
+        <td>RT @HuffingtonPost: Cruz: "Donald, you are welcome to be president of the Smithsonian." #GOPDebate</td>
+    </tr>
+    <tr>
+        <td>69</td>
+        <td>RT @DaveKerpen: #ArtofPeople is a #1 New Release on #Amazon &amp;amp; not out until 3/15! SO excited, THANK YOU! https://t.co/LAVLwwSuBj https://t.…</td>
+    </tr>
+    <tr>
+        <td>67</td>
+        <td>RT @joewilsontv: |LIVE NOW| The FINAL Song Request Cage Match on Meerkat! U pick the songs  and everyone votes 👎👍 #meerkat https://t.co/ylT…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['Melanie_Canada_tweets.tsv', 'Melanie_Canada_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

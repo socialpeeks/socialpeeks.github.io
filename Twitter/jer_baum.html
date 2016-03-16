@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/jer_baum">jer_baum</a></td>
+        <td>Vancouver, BC</td>
+        <td>Web Dude: Connector @KitsConnect, Director of @KitsPingPong, Sales @Mobimaps, Builder @TheCookieOrg &amp; contributor to @VancityBuzz. Friend to all</td>
+        <td>4,088</td>
+        <td>2,031</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>jer_baum</span> engages 6.2% (retweets/tweets) and has average resonance of 0.98</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Vancouver</td>
+        <td>57</td>
+    </tr>
+    <tr>
+        <td>#Kitsilano</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>#Vancity</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#KitsBeach</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#PingPong</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#Periscope</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#SpeedDating</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#ArtShow</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#RAWvancouver</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#VancityBuzz</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>vancitybuzz</td>
+        <td>53</td>
+    </tr>
+    <tr>
+        <td>sunnylenarduzzi</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>rawvancouver</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>erinireland</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>glutenfreesam</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>vancraftcruise</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>dashingdate</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>kitspingpong</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>meganemichael</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>breakfstcourier</td>
+        <td>6</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Win 4 tickets to the Fall Harvest Dinner @BelmontBar #DrinkDineDance via @VancityBuzz https://t.co/UoabfiazD2 RT to enter</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>#Vancouver event at @FoxCabaret via @biggerthanyoume in support of @IRS_BC. @VancityBuzz @georgiastraight @VIAwesome https://t.co/VmATfGc3iL</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>"We want this to be Canada's event" @BrooksDowning @bdGlobalSports re: #VanHoopsShowcase @VancityBuzz https://t.co/yU0mAnTop5</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Hot new event in @gastown / @GastownGazette. #SpeedDating in #Vancouver on June 30th by @DashingDate http://t.co/B6EmmTBk89 #Rainier</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Former Law and Order star &amp;amp; Musical Goddess @JillHennessy was on the @ToddShapiroShow https://t.co/GLvChXe6SV #iDo</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>@969JACK have you heard? Incredibly touching event tonight = @biggerthanyoume for Inland Refugee Society of BC https://t.co/6JpBUrB777</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vancouver recently lost a legend in their culinary world. RIP Chef Fineza   https://t.co/MR4mNbPuIX</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Special thanks to @cassandra_rmt for helping ease my tension. Great #massagetherapist in #Vancouver  #Kitsilano @shopwestbway</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Proudly participating in the most respected football tourney in #Kitsilano #Vancouver  https://t.co/2sfzTpY3DL</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Picked up this lil but of deliciousness from @befreshlocal - @erinireland you make some great… https://t.co/gwQRMFUfYn</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Vancouver</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#J711</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#letsgetout</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Snapchat</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#NBAVote</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#jays</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#glutenfreelist</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#WeTheNorth</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#smokedfish</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#harmonyarts</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>glutenfreesam</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>theprovince</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>vancitybuzz</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>georgiastraight</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>sunnylenarduzzi</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>jer_baum</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>blakehavard</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>tjbuffoonery</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>buckmancoe</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>espn</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>12740</td>
+        <td>RT @JustinTrudeau: I just voted for the Raptors' Kyle Lowry for the NBA All-Star game. RT this tweet and it counts as your vote, too! #NBAV…</td>
+    </tr>
+    <tr>
+        <td>610</td>
+        <td>RT @georgiastraight: Vote for your faves in @GeorgiaStraight’s #BestOfVan &amp;amp; win a trip to Maui! http://t.co/3DxuUoDNpP http://t.co/FRIuMe2x…</td>
+    </tr>
+    <tr>
+        <td>396</td>
+        <td>RT @udemy: Want to take your passion and turn it into a brand? Learn from Gary Vaynerchuk's expertise in his new online course. https://t.c…</td>
+    </tr>
+    <tr>
+        <td>220</td>
+        <td>RT @VancityBuzz: Win a weekend of luxury in Whistler ($1550 value) @Mezzi_Official via @VancityBuzz http://t.co/gx2nzYI962 RT to enter!</td>
+    </tr>
+    <tr>
+        <td>127</td>
+        <td>RT @mashable: A firm called 6S Marketing would really prefer it if Apple skipped ahead to the iPhone 7. http://t.co/Y0lMJeBvgZ</td>
+    </tr>
+    <tr>
+        <td>68</td>
+        <td>RT @VancityBuzz: Finally! #Vancouver goes live on #Snapchat tomorrow! https://t.co/W1ndyTWNmX RT and spread the word! https://t.co/HLX8G4NS…</td>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td>RT @StarEntertain: John Oliver and Mike Myers took on the Canadian election law to blast Stephen Harper. http://t.co/TmSq1G61dv http://t.co…</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>RT @StarSports: Blue Jays take over first as streak reaches 10 games http://t.co/k6M8OZ7iwA #bluejays #jays</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>RT @letsgetoutapp: Never go for a coffee or a drink alone. Invite others in your area to join you. Simple! #letsgetout https://t.co/OxJgb0x…</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @biggerthanyoume: Aid #Refugees in #Vancouver at @IRS_BC Gala w/ #Vancity's @davidmorinmusic @buckmancoe +more https://t.co/khk5GbCCcJ h…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['jer_baum_tweets.tsv', 'jer_baum_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/FairTradeFetish">FairTradeFetish</a></td>
+        <td>Brantford Ontario Canada </td>
+        <td>Losing my Marbles , By Playing for Keeps #Blogger #ethicalfashion supporter #WAHM #networkmarketing #directsalesbusinessmom</td>
+        <td>8,747</td>
+        <td>6,961</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>FairTradeFetish</span> engages 80% (retweets/tweets) and has average resonance of 3.48</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#AllinGoodFaith</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#monthlysubscription</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#handmade</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#FaithBox</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Ethicalfashion</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#toystreatstreasures</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#wahm</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#TastyTuesday</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Artsandcrafts</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#carrots</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>ownerwahmreview</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>sacha_visualize</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>fairtradefetish</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>treasureboxkids</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>youtube</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>boostinsider</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>kirkchisholm</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>booksgs3</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>theoakeshotel</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>mombeachblog</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>102</td>
+        <td>FaithBox : Get to know what's inside #FaithBox #monthlysubscription #AllinGoodFaith https://t.co/e9F5cHNC46 via @ownerwahmreview</td>
+    </tr>
+    <tr>
+        <td>41</td>
+        <td>Get these #SparkleStuds and more from #StellaandDot @kfaziam #wahm #accessories https://t.co/7isp5XUK3m #jewellry https://t.co/RjQVn9NPAU</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>#handmade with love in #Uganda OneEarthwithM@outlook.com to Order #Ethicalfashion #ethicalstyle #Artsandcrafts https://t.co/sxAKnkKsm8</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>How to Tell if your Chakras are Blocked https://t.co/pRHXOeerFv via @fairtradefetish</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Baby it's Cold Outside, try this Southwestern Slow Cooker Chicken and Potato Soup Recipe to Wa… https://t.co/mL5nUT7Lll via @ownerwahmreview</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>#Presale: Dress to Impress #LightasAir #ethicalfashion #SweaterDay Shop Now: https://t.co/oauIEsFIMC</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>#Picpal is a Collage Chat App available for #free on both iOS and Android devices! https://t.co/Qj0nmDQY7f https://t.co/mAq3z74Nb7</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Tigger could not get enough of his Purr Packs box #toystreatstreasures https://t.co/bPMKomE9yQ via @ownerwahmreview</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>The perfect gift! Get 20% off with 'RTS20' and receive our 7 piece gift set. #USA #AUS https://t.co/1wGuNmXo3W https://t.co/YOecN82yuJ</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Spring is a music streaming service and workout coach. Run to playlists that you love https://t.co/zfiDg6AFWO https://t.co/wP03W4tfQw</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#ad</td>
+        <td>96</td>
+    </tr>
+    <tr>
+        <td>#ASMSG</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#win</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#GalaxyS7</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#Giveaway</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#t4us</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#sp</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#sk</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#recipe</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#ValentinesDay</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>ownerwahmreview</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>bestbuy</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>mikihope</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>toughcookiemom</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>leahsaysviews</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>pizzazz_books</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>iowahell</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>emilyreviewscom</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>fairtradefetish</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>3812</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>1771</td>
+        <td>RT @AMBERAlertONT: Cancel<br>Ontario AMBER Alert has been cancelled<br>Child has been located safe and sound.</td>
+    </tr>
+    <tr>
+        <td>741</td>
+        <td>RT @InspireNCelebr8: Learn how to do old Hollywood #makeup with @Maybelline #cosmetics! https://t.co/gN2ZsPGYIc #MNYLooksToLove #ad https:/…</td>
+    </tr>
+    <tr>
+        <td>204</td>
+        <td>RT @HowToBeSingle: Get ready. #HowToBeSingle hits theaters everywhere THIS Friday! https://t.co/EkMib2zJFT https://t.co/hPyb4HWcXf</td>
+    </tr>
+    <tr>
+        <td>202</td>
+        <td>RT @SurfnSunshine: Hah! That’s it. I need a Walken Closet to #addpizzazz 💕 https://t.co/B43vQnez3C  Thx #KiaOptima for the #SuperBowlCommer…</td>
+    </tr>
+    <tr>
+        <td>191</td>
+        <td>RT @FashionBeyond40: Drawing $50 Gift Card from @shoppinkblush https://t.co/Ir2QPf8l4V #ShopPinkBlush #PinkBlush #giveaway #drawing https:/…</td>
+    </tr>
+    <tr>
+        <td>178</td>
+        <td>RT @LivingSMoments: You won't believe what's his thinking about! #ad #ShreddedBlendforCats #ProPlanCat https://t.co/tToz5uRi46 https://t.co…</td>
+    </tr>
+    <tr>
+        <td>167</td>
+        <td>RT @jenngem: Please consider turning your profile picture yellow for #EndometriosisAwareness this month!<br>https://t.co/VHtyFARtxn https://t.…</td>
+    </tr>
+    <tr>
+        <td>157</td>
+        <td>RT @DonnaChaffins: Celebrate the amazing women along w/ the @WTA &amp;amp; @SAP for keeping #tennis strong! #sp #WTAWomensDay https://t.co/jOigD0WW…</td>
+    </tr>
+    <tr>
+        <td>155</td>
+        <td>RT @SurfnSunshine: Water resistant, awesome camera + expandable memory? Can’t wait for my new @Verizon #GalaxyS7Edge - perfect for #Travel!…</td>
+    </tr>
+    <tr>
+        <td>152</td>
+        <td>RT @CMarieNico: Fast autofocus means saying good-bye to blurry pics with the Samsung #GalaxyS7. #ad @bestbuy https://t.co/ui8hPY6gPr https:…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['FairTradeFetish_tweets.tsv', 'FairTradeFetish_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

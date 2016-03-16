@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/1anhaga">1anhaga</a></td>
+        <td>Edmonton, Treaty 6</td>
+        <td>artist, writer, scholar of Old English poetry . . . freelance everything.  I just sorta do stuff . . .</td>
+        <td>1,315</td>
+        <td>1,354</td>
+    </tr>
+</table><h2>Analysis based on 599 most recent tweets</h2>
+<h2><span>1anhaga</span> engages 27% (retweets/tweets) and has average resonance of 0.91</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#yegarts</td>
+        <td>103</td>
+    </tr>
+    <tr>
+        <td>#yeg</td>
+        <td>52</td>
+    </tr>
+    <tr>
+        <td>#yegtheatre</td>
+        <td>33</td>
+    </tr>
+    <tr>
+        <td>#ableg</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>#Uber</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>#Edmonton</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>#cdnpoli</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#science</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#SaveTheRAM</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#food</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>singhmarg</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>paulatics</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>bmasonndp</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>citadeltheatre</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>bogeywheels</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>alberta_allie</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>uber</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>timotheories</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>youraga</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>kikkiplanet</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>@justicedanielh @daniellelorenz <br>Gotta mention . . .<br>Lightfinder by @aaronpaquette:<br><br>https://t.co/p633FUY3yZ</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>University of Alberta’s New Works Festival showcases what’s next in #Edmonton theatre https://t.co/wCmChymYfW<br>#yegarts #yegtheatre</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Read The #yegarts Daily ▸  today's top stories via @YEGFoodie @UofADrama @FandMtheband https://t.co/YyOTenHCZr</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Read The #yegarts Daily ▸  today's top stories via @Movingradio @NightlifePoster @NikitaK_Singh https://t.co/mCV33dWNUm</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Please, @RachelNotley! Please save the old @RoyalAlberta Building! Must we destroy everything 50+ years old?<br>#ableg https://t.co/b1RqYNSwIr</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>If we let it happen, all workers will become "contractors" like #Uber drivers &amp;amp; corporate taxation will end<br>#cdnpoli<br>https://t.co/wvKcfmsqhp</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>This.<br>A Downtown for Everyone https://t.co/USDgtibiYf via @spacing<br>#yeg #yegplanning #yeginfill #yegcc #yegdt</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>This is life in the heart of #WinterCity #Edmonton at @YegCanoeVolant! <br><br>#yeg https://t.co/hJkISgMMRJ</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The best place to be in #yeg right now: the second floor of @yourAGA!<br>https://t.co/rFJ9A8lQn6<br>#yegarts #7PNIAI https://t.co/bPpwBIP10o</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Thanks for the #LightSail bling, @exploreplanets! https://t.co/rYad73uUtV</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#YEG</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>#ableg</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#yegcc</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Uber</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#abpoli</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#yegheritage</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#YEGarts</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#savetheRAM</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#cdnpoli</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#yegwinter</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>paulatics</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>1anhaga</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>yegcanoevolant</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>doniveson</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>edmontonjournal</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>revrecluse</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>cree8dawn</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>uber</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>bcwestmind</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>kikkiplanet</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>29009</td>
+        <td>RT @ABC: 106-year-old woman has priceless reaction meeting Pres. Obama and First Lady. "I tell you, I am so happy!"<br>https://t.co/pNF31vqm6J</td>
+    </tr>
+    <tr>
+        <td>4634</td>
+        <td>RT @StephenKing: The stupidest, ugliest Presidential campaign in my entire life: HOUSE OF CARDS meets SHARKNADO.</td>
+    </tr>
+    <tr>
+        <td>3173</td>
+        <td>RT @kumailn: Pitch: A Movie/ TV ep that starts w a Muslim guy praying &amp;amp; then it turns out he's a normal guy &amp;amp; the story has nothing to do w…</td>
+    </tr>
+    <tr>
+        <td>3076</td>
+        <td>RT @PJTLynch: [2050]<br>"Grandpa, how did President Trump ever get elected?"<br><br>Well, we were a bit distracted. That was the year adult coloring…</td>
+    </tr>
+    <tr>
+        <td>2870</td>
+        <td>RT @Shanna_Katz: "Satire is meant to ridicule power. If you are laughing at people who are hurting, it is not satire, it is bullying." -Ter…</td>
+    </tr>
+    <tr>
+        <td>1754</td>
+        <td>RT @ShuttleCDRKelly: Um, @StationCDRKelly, I thought you said you had things under control up there on @Space_Station? #ApeInSpace https://…</td>
+    </tr>
+    <tr>
+        <td>1387</td>
+        <td>RT @JimWatsonOttawa: Hate is not welcome anywhere. #TurnAwayReturnOfKings https://t.co/Ty3hD7VETW</td>
+    </tr>
+    <tr>
+        <td>1193</td>
+        <td>RT @FrauMaja: Heute vor 73 Jahren wurden Hans &amp;amp; Sophie Scholl ermordet. Vielleicht ist es heute wichtiger denn je uns zu erinnern. https://…</td>
+    </tr>
+    <tr>
+        <td>1173</td>
+        <td>RT @JustinTrudeau: Yes. That way, when asked what you had for lunch, you can say "a sandwich". Sounds waaaay healthier. #first100 https://t…</td>
+    </tr>
+    <tr>
+        <td>1034</td>
+        <td>RT @mattyglesias: This seems a little paranoid for an island nation thousands of miles away. https://t.co/6jTLYhGwqz</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['1anhaga_tweets.tsv', '1anhaga_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>
