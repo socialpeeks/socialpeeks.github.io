@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/haleyradke">haleyradke</a></td>
+        <td>Edmonton, Alberta, Canada</td>
+        <td>married, mama to 2 boys, a dog person, adult adoptee in reunion, pro-family preservation, podcast aficionado, daughter of the King</td>
+        <td>596</td>
+        <td>1,194</td>
+    </tr>
+</table><h2>Analysis based on 598 most recent tweets</h2>
+<h2><span>haleyradke</span> engages 26% (retweets/tweets) and has average resonance of 1.27</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#momlife</td>
+        <td>72</td>
+    </tr>
+    <tr>
+        <td>#reallife</td>
+        <td>52</td>
+    </tr>
+    <tr>
+        <td>#adoption</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>#adoptee</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>#podcast</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#flipthescript</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#reunion</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#yeg</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#dinnerondelux</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#amreading</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>jaclynchute</td>
+        <td>35</td>
+    </tr>
+    <tr>
+        <td>nickradke</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>alisaharder</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>popcastpod</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>alan_fiebich</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>thefieb</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>theschindel</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>rhegankim82</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>luv_my_honda91</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>danielleb_c</td>
+        <td>12</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>The first name I really felt was my own? When I took my husband's last name. #flipthescript #adoptee #adoption</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>.@CanadaAdopts It is disgusting to portray an #adoptee as equivalent to some pet dog or cat. For shame. #adoption</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Yes. Please tell me more about #adoption since you're such an expert. I lived it my entire life but what do I know? #adopteeproblems</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>This morning I'm listening to some local #podcasts. Loving @TheOne_Podcast and also the latest from @KarenUnland @seenandheardyeg #yeg</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>The Silver Fox (from Making a Murderer) is interviewed in @CrimeWritersOn this week. You have to listen! #podcast</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>My given name at birth was Ashley Amber. I'll never see a birth certificate with that name on it. #flipthescript #adoptee #adoption</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I'm going to say God bless @SpiritedThriftr because I just booked my first ever house cleaning with @MadMaids and I'm really really excited!</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I followed a bio family member on here. I don't think he knows who I am. I sent him a DM years ago on FB. Don't know if he read it. #adoptee</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I can never be enough to fill a void in someone's life. But somehow I'm expected to as an adoptee. #flipthescript #adoptee #adoption</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Chopped all my veggies to @SortaAwesomeMeg podcast with @JerusalemGreer Loved the chat about advent. Thank you ladies! #podcast #christmas</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#adoption</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#yeg</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#flipthescript</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#adoptee</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#familypreservation</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#momlife</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#dinnerondelux</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Christmas</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#birthmother</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#yegfood</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>rhegankim82</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>popcastpod</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>haleyradke</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>jamiesrabbits</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>katswrites</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>michellewpd</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>grass_stains</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>chattygirlmedia</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>chancerubyfinn</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>hbl5</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>108947</td>
+        <td>RT @ericsmithrocks: 2016: Trump won't win.<br><br>2017: President Trump can't do that, can he?<br><br>2018: You watching The Hunger Games tonight? I ho…</td>
+    </tr>
+    <tr>
+        <td>41616</td>
+        <td>RT @ReactionBeyonce: BEYONCE'S FULL PERFORMANCE RT TO SAVE A LIFE https://t.co/SQKd3bqJYG</td>
+    </tr>
+    <tr>
+        <td>25392</td>
+        <td>RT @MatCro: GF: I'm sick of you pretending you're a detective. We should split up<br><br>ME: Good idea. We can cover more ground that way.</td>
+    </tr>
+    <tr>
+        <td>8384</td>
+        <td>RT @serial: Hi again <br><br>https://t.co/Z6ywel9wqV https://t.co/wGOrsqFTQO</td>
+    </tr>
+    <tr>
+        <td>6185</td>
+        <td>RT @bznotes: This response by Mark Zuckerberg is so good, it brings tears to my eyes. As a father of a young daughter, 100x yes! https://t.…</td>
+    </tr>
+    <tr>
+        <td>2782</td>
+        <td>RT @iJesseWilliams: Only once in U.S. history did the fear of refugees wiping everyone out actually come true. We’ll be celebrating it on T…</td>
+    </tr>
+    <tr>
+        <td>2108</td>
+        <td>RT @Jake_Vig: With virtually no power, there still comes a surprisingly large amount of responsibility.</td>
+    </tr>
+    <tr>
+        <td>1811</td>
+        <td>RT @CalebWilde: On the other side of this door is either a baby changing station or Princess Leia's funeral. https://t.co/EzXHOoFGee</td>
+    </tr>
+    <tr>
+        <td>1609</td>
+        <td>RT @charlesarthur: And this is only a small sample for the month.. https://t.co/5OkejG7u1Y</td>
+    </tr>
+    <tr>
+        <td>1481</td>
+        <td>RT @XplodingUnicorn: Me: Go to bed<br><br>5-year-old: One more question<br><br>Me: Fine<br><br>5: Who would win if Luke Skywalker fought Harry Potter?<br><br>Me<br><br>5…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['haleyradke_tweets.tsv', 'haleyradke_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

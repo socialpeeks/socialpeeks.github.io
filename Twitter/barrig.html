@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/Barrig">Barrig</a></td>
+        <td>Toronto</td>
+        <td>#Mom of 3 #boys, #Toronto lifer. #Armenian, #Leafs #jays #organic #cooking, #travel, #photog, #humour, #positive #inspiration &amp; please don't forget the #wine!</td>
+        <td>1,170</td>
+        <td>1,410</td>
+    </tr>
+</table><h2>Analysis based on 599 most recent tweets</h2>
+<h2><span>Barrig</span> engages 30% (retweets/tweets) and has average resonance of 1.42</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#kids</td>
+        <td>66</td>
+    </tr>
+    <tr>
+        <td>#Toronto</td>
+        <td>35</td>
+    </tr>
+    <tr>
+        <td>#parents</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>#Christmas</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>#lol</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#love</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#truth</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#parenting</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#classic</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#behappy</td>
+        <td>9</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>raffi_rc</td>
+        <td>61</td>
+    </tr>
+    <tr>
+        <td>dlitowski</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>amandaginn</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>jevlloyd</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>yummymummyclub</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>jackiebrandwood</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>broninpudsey</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>footymummy</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>maryforbc</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>soniafurstenau</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>@SoniaFurstenau We #StandWithShawnigan in ONT &amp;amp; protest the endangerment of its water supply. The more voices across #Canada, the better!</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>@Raffi_RC @maryforbc Stunning photo. Her beauty shines and SHOULD be protected. Across the country, we all #StandWithShawnigan #bcpoli</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>It's...a...BOOK! #tech #sad #future cc @amandaginn @DLitowski  @JEVLloyd @Raffi_RC @jackiebrandwood https://t.co/pHHikdEotp</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>So true!! Take the time to look up! #BePresent cc @JEVLloyd @Raffi_RC @DLitowski @amandaginn https://t.co/8goivHFnAb</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>@SoniaFurstenau As a fellow #Canadian I can't imagine having to worry about water safety! Time for @maryforbc to step up &amp;amp; step in. #bcpoli</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Perhaps Jan 6 will be an "epiphany" @maryforbc: be the Min of Env that puts environment 1st! @SoniaFurstenau @Raffi_RC #SaveShawniganWater</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Mama loves it when....#kids #truth #helpinghand cc @Raffi_RC @amandaginn @DLitowski @JEVLloyd @jackiebrandwood https://t.co/iXudsmQk4Y</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>#lol #StarWars https://t.co/sLStdrRTAO</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Love! "French city gets 'short story dispensers' to help people kill time https://t.co/HCKu3DFyVE" #techfree @DLitowski @JEVLloyd @Raffi_RC</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>It's not what's under the #Christmas tree that matters;it's who's around it. 🌲💞 https://t.co/ej7RJK5pPB</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#parenting</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#bcpoli</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#Bernie2016</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#Toronto</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#childhonouring</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#ThinkBIGSundayWithMarsha</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#quotes</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#ClimateMarch</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#FeelTheBern</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>raffi_rc</td>
+        <td>44</td>
+    </tr>
+    <tr>
+        <td>dlitowski</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>alphabetsuccess</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>barrig</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>maryforbc</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>amandaginn</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>andreanair</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>torontostar</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>bweikle</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>jackiebrandwood</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>78169</td>
+        <td>RT @RFCdan: To people blaming refugees for attacks in Paris tonight. Do you not realise these are the people the refugees are trying to run…</td>
+    </tr>
+    <tr>
+        <td>23243</td>
+        <td>RT @ChrisMurphyCT: Your "thoughts" should be about steps to take to stop this carnage. Your "prayers" should be for forgiveness if you do n…</td>
+    </tr>
+    <tr>
+        <td>21281</td>
+        <td>RT @owillis: if only we had a seasonally appropriate story about middle eastern people seeking refuge being turned away by the heartless</td>
+    </tr>
+    <tr>
+        <td>16200</td>
+        <td>RT @JustinTrudeau: I am shocked and saddened that so many people have been killed and injured in violent attacks in #Paris. Canada stands w…</td>
+    </tr>
+    <tr>
+        <td>10781</td>
+        <td>RT @BernieSanders: How do we have so much money to go to war in Iraq but somehow not enough money to provide clean drinking water to Flint?…</td>
+    </tr>
+    <tr>
+        <td>6455</td>
+        <td>RT @Pontifex: Jesus would never ask us to be assassins; he calls us to be disciples. He would never send us to die. He invites us to life.</td>
+    </tr>
+    <tr>
+        <td>6351</td>
+        <td>RT @JohnTory: Toronto for #Paris https://t.co/aunaJJDnAO</td>
+    </tr>
+    <tr>
+        <td>4794</td>
+        <td>RT @Pontifex: Earnings and capital are not more important than the human person, but should be at the service of the common good.</td>
+    </tr>
+    <tr>
+        <td>2721</td>
+        <td>RT @businessinsider: The San Bernardino shooting is America's 352nd mass shooting in the 336 days of 2015 https://t.co/0P2xccYmDH https://t…</td>
+    </tr>
+    <tr>
+        <td>2591</td>
+        <td>RT @norm: If it's too cold for you, it's too cold for your dog. Don't leave your pets outside in this extreme cold. #Toronto https://t.co/N…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['Barrig_tweets.tsv', 'Barrig_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

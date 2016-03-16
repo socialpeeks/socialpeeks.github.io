@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/flaviadelmonte">flaviadelmonte</a></td>
+        <td>Toronto, Canada</td>
+        <td>I want to help women say, I love my body. I am a mom and I love fitness and food! I am Flavilicious. An RN, CPT, and PN Certified. <br>#fitness #nutrition #health</td>
+        <td>16,947</td>
+        <td>14,918</td>
+    </tr>
+</table><h2>Analysis based on 599 most recent tweets</h2>
+<h2><span>flaviadelmonte</span> engages 10% (retweets/tweets) and has average resonance of 1.68</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Workout</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>#fitness</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>#recipe</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>#health</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>#exercise</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#Fit</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>#getfit</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>#motivation</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#quote</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#gymrats</td>
+        <td>12</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>youtube</td>
+        <td>32</td>
+    </tr>
+    <tr>
+        <td>flaviadelmonte</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>djinaah</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>dabbott80</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>amylynnlpn_amy</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>mrbonmot</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>msander41</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>montyloree</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>janell_elise</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>genessissantana</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Eating Colors for Health! Smart eh? RT if you find this interesting and if you care about your health! #Healthy #Eat http://t.co/kU5e0L1ORY</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>"...We rejoice in our sufferings, knowing that suffering produces endurance..." #motivation #quote http://t.co/hqwg6t0A2s</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>The 10 Minute Workout To Dream Abs #SickPack #Fit http://t.co/EYQbHGjoes</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>7 Steps of Happiness -&amp;gt; http://t.co/cnpd520F5p #happy #healthy #LifeHacks http://t.co/u8zQDbvSjK</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Starvation is NOT an option! This image tell you why: http://t.co/OAaFS5B1Dt Looking to eat healthy? http://t.co/no51NgeffM #weightloss</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>You Are Beautiful... #femalefitness #MondayMotivation http://t.co/ZPqjhtj0qS</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>I am going to KILL IT at the gym today! RT if you are!! #gymrats #fitgirls http://t.co/zBghgJaBkG</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>"People don't just find the strength and willpower they need... they create it!" #motivation #monday http://t.co/mtWDXWsLvF</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Spinach frittata recipe for a healthy breakfast! Get the recipe: http://t.co/ZrAO58t2GD http://t.co/zhPqwTXChM</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Ready to get those glutes working? First you need to know what #muscles you want to work to perfect Gorgeous Glutes:  http://t.co/VGTEbDacne</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#Fitness</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#SummerAbs</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#fall</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Recipe</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#back</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#SpinachFrittata</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Video</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#bigbunshun</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Kelowna</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#miliadelmonte</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>flaviadelmonte</td>
+        <td>60</td>
+    </tr>
+    <tr>
+        <td>youtube</td>
+        <td>23</td>
+    </tr>
+    <tr>
+        <td>emmaly14</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>kellbrazil</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>reedadria</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>cherrypie0420</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>daviidmaureiira</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>eve6shay</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>everywaywoman</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>donnaziva</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>RT @armsworks: “@flaviadelmonte: on Killer Exercises For Shapely Arms! <br><br>Get more workouts: http://t.co/Ytps6GFXJx http://t.co/AX10vPRSwv”</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @emmaly14: I liked a @YouTube video from @flaviadelmonte http://t.co/qQpoLjJTSu Killer Exercises For Shapely Arms</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @cherrypie0420: “@flaviadelmonte I am thankful for another second chance and YOU!! You and your program inspire me on a daily basis 💞 ht…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @Mirena_Detox: Ladies, spoil yourself and make your beauty shine!! Here's a great #detoxjuice via @flaviadelmonte #WomensDay #detox http…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @KristinaLudwig1: Yum! Definitely trying this. Pumpkin Spice Latte #Recipe http://t.co/lQCj32B471 via @flaviadelmonte #fall #coffee #pum…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @Global_Fitness: The 2nd annual #BurpeesForBoobies is back #Kelowna ! Come support the @CBCF_BCYukon on Oct 20th for a great cause! http…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @EmilyVanDerHell: They work! We do them on our Backdays @flaviadelmonte Show off your sexy #back! Try these 3 back exercises: https://t.…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @DicedOnion: Tasty Thursday – Healthy Avocado Recipe http://t.co/T6G0fykrgq via @flaviadelmonte</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @DaviidMaureiira: Me gustó un video de @YouTube de @flaviadelmonte http://t.co/47j4KjQz5n Copy of Fitness Tips For Women: Stiff Leg Dead…</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>RT @ArsenicDrink: I liked a @YouTube video from @flaviadelmonte http://t.co/0JQHl2FXTU Crazy Six Pack Abs Workout For A Show-Off Stomach</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (09/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['flaviadelmonte_tweets.tsv', 'flaviadelmonte_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

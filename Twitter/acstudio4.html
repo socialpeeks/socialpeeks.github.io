@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/ACStudio4">ACStudio4</a></td>
+        <td>Downtown Toronto</td>
+        <td>Studio 4 at The Adelaide Club offers privates &amp; classes in Pilates, GYROTONIC(R), GYROKINESIS(R), Yamuna Body Rolling(TM).</td>
+        <td>100</td>
+        <td>124</td>
+    </tr>
+</table><h2>Analysis based on 141 most recent tweets</h2>
+<h2><span>ACStudio4</span> engages 31% (retweets/tweets) and has average resonance of 0.45</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#pilates</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>#GYROTONIC</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#BalancedBody</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#Yoga</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#Adelaide</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#YinYangYoga</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#chronicpain</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Olympic</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#giftideas</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#HardestThingToDo</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>adelaideclub</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>acstudio4</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>linkedin</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>womenofinflnce</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>selfmagazine</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>youtube</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>cambridgeclubs</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>denverpost</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>fitsugar</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>talentsmarteq</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Fall Beginner Pilates Package - 4 mat classes, 3 privates, 1 Amethyst Bio-Mat treatment. pilates@adelaideclub.com http://t.co/RdZTrj3k4V</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>A Warm Welcome to our newest Level 3 Instructor Dima Alakhras! http://t.co/zkCPjbClAU</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>“It's never too late, It's never too bad, and you're never too old or too sick to start from scratch once again.” ~ Bikram Choudhury</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>There is still space in tomorrow's classes - YBR, Glutes &amp;amp; Abs, Gyrokinesis.  Email pilates@adelaideclub.com to sign-up!</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Healthy food, exercise and yoga - we couldn't agree more. Article: Easy ways to de-stress at the office. http://t.co/UPuPH972 via @fitsugar</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Great Article from #BalancedBody on #Pilates and Older Adults - http://t.co/YpOl5pbQ</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Good article for #water haters. http://t.co/3jry55x8 - personally I love water!  What is your favourite beverage?</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>We have amazing new #lululemonyogamats from our ProShop - everyone loves them.  Thanks Jimmy!</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>WOW!  Our SpaLates Specialty Class on Nov 24th only has one spot left, and we haven't even advertised yet!</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>There's still room in tomorrow's classes - 11am Mat/Tower, 12:00 Reformer, and 6:30pm Reformer.  Email to join - pilates@adelaideclub.com</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#pilates</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#adelaideclub</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#toxics</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#Yoga</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#saythankyou</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#MensPilates</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#desk</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#cambridgeclub</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#pilatesdigest</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#WorkoutWednesday</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>cambridgeclubs</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>franklinmethod</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>selfmagazine</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>stott_pilates</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>pilatestweets</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>acstudio4</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>adelaideclub</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>shape_magazine</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>inspowerminds</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>famouswomen</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>699</td>
+        <td>RT @DavidRoads: A pessimist sees the difficulty in every opportunity; an optimist sees the opportunity in every difficulty.</td>
+    </tr>
+    <tr>
+        <td>443</td>
+        <td>RT @FamousWomen: Being defeated is often a temporary condition; giving up is what makes it permanent.</td>
+    </tr>
+    <tr>
+        <td>358</td>
+        <td>RT @Sports_Greats: "It always seems impossible, until it's done." -Nelson Mandela</td>
+    </tr>
+    <tr>
+        <td>284</td>
+        <td>RT @LifeLimits: Sometimes you have to move backward to get a step forward. - Amar Gopal Bose</td>
+    </tr>
+    <tr>
+        <td>264</td>
+        <td>RT @Women_Fit: When you're about to quit, remember why you started.</td>
+    </tr>
+    <tr>
+        <td>259</td>
+        <td>RT @Inspire_Us: We are what we repeatedly do. Excellence, then, is not an act, but a habit. -Aristotle</td>
+    </tr>
+    <tr>
+        <td>154</td>
+        <td>RT @InspowerMinds: PAIN is temporary. <br><br>Quitting lasts FOREVER.</td>
+    </tr>
+    <tr>
+        <td>136</td>
+        <td>RT @Smart_Quotes: "The Secret of getting ahead is getting started" Mark Twain</td>
+    </tr>
+    <tr>
+        <td>98</td>
+        <td>RT @BrainyQuote: There is no influence like the influence of habit. - Gilbert Parker<br>http://t.co/oFp0sLSQfe http://t.co/10UG2cZAop</td>
+    </tr>
+    <tr>
+        <td>44</td>
+        <td>RT @SELFmagazine: Find your edge: Think about what you want to accomplish, set a goal, and take a step toward it every day. #momentforyo ...</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (10/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['ACStudio4_tweets.tsv', 'ACStudio4_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

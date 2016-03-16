@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/trevcorkum">trevcorkum</a></td>
+        <td>Toronto</td>
+        <td>Writer. THE ELECTRIC BOY, a novel, forthcoming with Doubleday Canada. <br>Host of The Chat at @49thShelf. Represented by @TheCookeAgency.</td>
+        <td>1,278</td>
+        <td>592</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>trevcorkum</span> engages 22% (retweets/tweets) and has average resonance of 2.74</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#todayspoem</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#fridayreads</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Cowan</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#fullmoon</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#poetry</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#hooray</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#CanadaReads</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#ReLit</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#ff</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#wondertwins</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>49thshelf</td>
+        <td>36</td>
+    </tr>
+    <tr>
+        <td>thecookeagency</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>krisbertin</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>literarygoon</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>amandaleduc</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>biblioasis</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>walrusmagazine</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>amylaurajones</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>gillerprize</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>khardcase</td>
+        <td>12</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Folks - @Little_Fiction is so close to reaching its goal to fund the music anthology - only 4 more copies! 2 days! https://t.co/oRZ1LtsK48</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Such a fantastic profile of @biblioasis by @itsmarkmedley in @globebooks. A must read. http://t.co/T73pbbqCJh</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>My Flannery: if you missed it, check out this great essay on Flannery O'Connor by @lizharmer in @thenewquarterly https://t.co/t1kEpuqYd8</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>My novel THE ELECTRIC BOY will be published by Doubleday Canada. Grateful to my agent @DLCooke! http://t.co/wzZEE8uIor cc: @TheCookeAgency</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Support @Little_Fiction's awesome crowdfunding efforts to get 2 anthologies made -- music &amp;amp; food http://t.co/xbDLD2YqnO</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>So pleased to join the team @49thShelf to launch an author interview series called The Chat. http://t.co/peR3bpPedn cc: @TheCookeAgency</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>On The Chat @49thShelf, I speak to 2015 GG winner for Children's Literature, @CarolinePignat https://t.co/B58QGN9Js9 cc: @RedDeerPress</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>My conversation with @writerstrust Fiction Award winner Andre Alexis, for @49thShelf's The Chat https://t.co/dyO6djM5LS @coachhousebooks</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>It's #poetry month on The Chat at @49thShelf. Stay tuned for interviews with @damianrogers &amp;amp; Karen Solie. cc @HouseofAnansi @coachhousebooks</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Congrats all #ReLit nominees, incl. @dorettalau @shawnsyms @danicouture @KBabstock @kathypagebc - great list https://t.co/YM6sHv2ZQj</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#poetry</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#GGBooks</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#GillerPrize</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#RaiseaGlass4Alistair</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#CNF</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#theNUBapp</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#canlit</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#YYZ</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#books</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#nonfiction</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>trevcorkum</td>
+        <td>54</td>
+    </tr>
+    <tr>
+        <td>49thshelf</td>
+        <td>31</td>
+    </tr>
+    <tr>
+        <td>gillerprize</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>amandaleduc</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>thepuritan</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>literarygoon</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>little_fiction</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>learnpublishing</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>humberwriters</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>prismlitmag</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>104</td>
+        <td>RT @parisreview: “What I really wanted was every kind of life, and the writer’s life seemed the most inclusive.” —Susan Sontag https://t.co…</td>
+    </tr>
+    <tr>
+        <td>92</td>
+        <td>RT @openculture: Flannery O’Connor: Friends Don’t Let Friends Read Ayn Rand (1960) http://t.co/85BMU1w2OH http://t.co/P3APfH5MNg</td>
+    </tr>
+    <tr>
+        <td>57</td>
+        <td>RT @parisreview: “Silence is also a form of speaking.” —Herta Müller http://t.co/XgsX9g5ayH</td>
+    </tr>
+    <tr>
+        <td>46</td>
+        <td>RT @PENamerican: Achebe, Arendt, Bartók, Buñuel, Chopin, Einstein, El Saadawi, Farah, Kundera, Makeba, Menchú, Miłosz: All refugees. https:…</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>RT @DavidRWilson1: "As a writer you're a solitary creature; doesn't mean you're anti-social." Alistair MacLeod #RaiseAGlass4Alistair http:/…</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>RT @pen_int: 'The good thing about writing books is that you can dream while you are awake' Haruki Murakami #quoteoftheday https://t.co/cq6…</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>RT @Little_Fiction: If you like what we do (+ the authors we publish) please support our #crowdfunding campaign to get two books make. http…</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>RT @danielmacivor: "Wanting to reform the world without changing your self is like covering the earth in leather to avoid the stones. Shoes…</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>RT @PrismLitMag: Check it: Prose Ed @ChrisPDEvans &amp;amp; PRISM Contributor @trevcorkum in @Little_Fiction's Music Anthology. Gets yours!  http:/…</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>RT @Little_Fiction: Help us make some books. Win some free stuff. Everybody wins. http://t.co/Y5InmKOwZv</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['trevcorkum_tweets.tsv', 'trevcorkum_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

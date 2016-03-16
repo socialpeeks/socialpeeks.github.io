@@ -1,0 +1,551 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/ThriftedBlog">ThriftedBlog</a></td>
+        <td>Edmonton</td>
+        <td>Vintage lover, vegan food maker, thrift shopper, photo taker, DIYer, cat enthusiast</td>
+        <td>289</td>
+        <td>540</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>ThriftedBlog</span> engages 3.8% (retweets/tweets) and has average resonance of 0.38</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#vegan</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>#yeg</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#honeymoon</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#catsofinstagram</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>#cat</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#catstagram</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#whatveganseat</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#london</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#edmonton</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>#instacat</td>
+        <td>7</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>bloglovin</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>midnight</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>rpjohnson001</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>epldotca</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>thecurtisfortin</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>cbcnews</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>abeautifulmess</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>joshclassenctv</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>etsy</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>icelandair</td>
+        <td>2</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Watched #amiraandsam last night. Definitely recommend it. You can borrow it from @EPLdotCA if you're in #yeg. @MartinStarr was fantastic.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I'm going to miss you #JonStewart Thanks for everything! @TheDailyShow #TheDailyShow</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>This bagelwhich is my go to lunch! Locally made vegan onion bagel with @buteislandfoods Sheese… https://t.co/gFvmAgO5HH</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>THRIFTED is back up and running! Brand new design with new posts starting on Monday! http://t.co/UryL3JChRu</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>So much delicious Veggie Garden!<br>#veggiegarden #vegan #vegansofig #whatveganseat #veganfood… https://t.co/mwMyH3i9Un</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>My Sheese came today from @vegansupply! I was a huge fan of their spread when I was in the UK… https://t.co/OA3ljrDE7Z</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Massive order from @welldotca feat @SeventhGen @SISUVitamins @methodtweet @Balzacs https://t.co/cJduCDedw0</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>I took this the other day but Grant told me I should probably limit posting cat videos to once a… https://t.co/tJbLZypgSn</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Great Wednesday night! #janegoodall #winspear #yeg #yegdt https://t.co/a87LiRaLK4</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Completely worth my frozen ass right now.<br>#yeg #yeggers #exploreedmonton #edmonton #alberta… https://t.co/1Ny1VSHASH</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#vegan</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#AskELJames</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>#FreeTheNipple</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#LoveWins</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#PrenticeBlamesAlbertans</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#MeatsNotGreen</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>#TDSBreakingNews</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>burnstand</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>nerdist</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>whedonesque</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>peta</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>shaunacitynews</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>paulatics</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>isachandra</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>duchessbakeshop</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>midnight</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>vegan</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>42882</td>
+        <td>RT @WhiteHouse: America should be very proud. #LoveWins http://t.co/qH1OA1BV2j</td>
+    </tr>
+    <tr>
+        <td>3781</td>
+        <td>RT @neiltyson: if I am ever abducted by aliens, I just may be compelled to ask, “Do you have Hoverboards on your home planet?"</td>
+    </tr>
+    <tr>
+        <td>3517</td>
+        <td>RT @eyeswideshut75: Which do you hate more, women or the English language? #AskELJames</td>
+    </tr>
+    <tr>
+        <td>2224</td>
+        <td>RT @Krosecz: #AskELJames Do all these negative tweets sent to you seem abusive to you? I think it's romantic enough to be turned into a nov…</td>
+    </tr>
+    <tr>
+        <td>920</td>
+        <td>RT @Bipartisanism: Here is the number for Walter Palmer who killed Cecil the lion.<br> <br>952 984 5361 <br><br>RT then give him a call. http://t.co/Oz…</td>
+    </tr>
+    <tr>
+        <td>674</td>
+        <td>RT @midnight: After seeing that Miley Cyrus's photo had the nipples blurred, @nerdist had something to say. #FreeTheNipple<br>https://t.co/zIh…</td>
+    </tr>
+    <tr>
+        <td>374</td>
+        <td>RT @TheDailyShow: #TDSBreakingNews US opens Cuba to all tourists. All Cuba, not just the Gitmo part. (That's still open too.)</td>
+    </tr>
+    <tr>
+        <td>275</td>
+        <td>RT @Paulatics: If you don't like PC gov't. stop complaining that there's no one else to vote for - and vote for someone else. #PrenticeBlam…</td>
+    </tr>
+    <tr>
+        <td>135</td>
+        <td>RT @peta: Average daily water footprint:<br><br>#Vegan = 300 gallons<br>Meat-eater = 4,000 gallons<br><br>Find out more at http://t.co/ln6BluxeTq  #MeatsN…</td>
+    </tr>
+    <tr>
+        <td>113</td>
+        <td>RT @ThomasMulcair: I congratulate @shaunacitynews for standing up to harassment. No journalist, or anyone else, should have to face such de…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['ThriftedBlog_tweets.tsv', 'ThriftedBlog_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>

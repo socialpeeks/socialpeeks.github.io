@@ -1,0 +1,563 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/hannahcree_">hannahcree_</a></td>
+        <td>Calgary, Alberta</td>
+        <td>Social Strategist &amp; Community Connector. Obsessed with Social Entrepreneurship &amp; the Sharing Economy | @va_angels | @the6social</td>
+        <td>950</td>
+        <td>872</td>
+    </tr>
+</table><h2>Analysis based on 317 most recent tweets</h2>
+<h2><span>hannahcree_</span> engages 36% (retweets/tweets) and has average resonance of 4.17</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#YYC</td>
+        <td>57</td>
+    </tr>
+    <tr>
+        <td>#EveryEntrepreneur</td>
+        <td>57</td>
+    </tr>
+    <tr>
+        <td>#yycstartup</td>
+        <td>32</td>
+    </tr>
+    <tr>
+        <td>#Toronto</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>#calgary</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>#yyz</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>#EdTech</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#entrepreneur</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>#streetstore</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#startup</td>
+        <td>6</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>calgarydropin</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>itsmikepayne</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>wbrettwilson</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>dariohudon</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>startup_canada</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>brandedyyc</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>the6social</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>goodpin</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>danwgunn</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>niseclothing</td>
+        <td>6</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>We need lots of men's clothing &amp;amp; volunteers for Dec 5 Street Store at @calgarydropin! https://t.co/TA0RXUgz55 #SMByyc70 #yyc #donation</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Who is ready for #gamechangersyyc tonight?  Going to be an awesome night! Thanks @BrandedYYC @atbfinancial @GlenmoreAudi #yyc #innovators</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>We launched our dream this weekend.. #SocialChange #community #youth #technology #MotivationMonday #6social https://t.co/1tqW3aPLCf</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Since 10 am we have had over 100 people through the #streetstore @calgarydropin! #giveback #donations #YYC #Calgary https://t.co/RjehXZ5iWD</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Wowieeeee now that's a sign w/ great community collaboration! @ihubNiagara @dsbn @InnovateNiagara #Niagara #6social https://t.co/vQ4VWF898z</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Mind blown meeting with @ihubNiagara team today! We're cooking up some big plans for the next @EDUAppChallenge! #hackathon #tech #edtech</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Honored to have been apart of @EDUAppChallenge! Can't wait for the next one! @TELUS @robotsNpencils @Hunter_Centre https://t.co/yls8G1V5pq</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Here's the link to AlbertIN for anyone interested https://t.co/DBXzhCFzLE #EveryEntrepreneur<br>https://t.co/fM0lKvm7Jc https://t.co/38ShobzmTq</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Did you know that Canada has over 100k entrepreneurs with 20 startup organisations positioned to help them grow? #EveryEntrepreneur #yyc</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>#EveryEntrepreneur .. is a creator, an innovator &amp;amp; a change maker FIRST, and THEN an entrepreneur.</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#YYC</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>#EveryEntrepreneur</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>#6social</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>#SCLP2015</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#Toronto</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>#SMByyc70</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#entrepreneur</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#GivingTuesdayYYC</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#Tech</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#edtech</td>
+        <td>4</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>hannahcree_</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td>the6social</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>startup_canada</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>va_angels</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>wbrettwilson</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>dariohudon</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>startupcalgary</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>calgarydropin</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>ihubniagara</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>brandedyyc</td>
+        <td>5</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>1291</td>
+        <td>RT @Kathbum: 'Hello, is this North?'<br>'S'ain't North. Saint West' #saintwest</td>
+    </tr>
+    <tr>
+        <td>57</td>
+        <td>RT @Addictd2Success: Lisa Messenger’s 5 Tips For Running Your Day As An Entrepreneur https://t.co/ujfcz8ElBk https://t.co/jroJZpvDTl</td>
+    </tr>
+    <tr>
+        <td>38</td>
+        <td>RT @AppStore: Of all the great new apps and games this year, these are our absolute favourites. #AppStore2015 https://t.co/qbshk1s5E6</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>RT @Uber_Calgary: On Saturday request a free pickup of your food donations to @CalgaryFoodBank! Learn more at https://t.co/xjXYOGDPLl https…</td>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td>RT @ScottAdamMartin: #Trending #Microblogging #visualcontent Platforms for #Storytelling https://t.co/nlK63EjXmA #contentmarketing http://t…</td>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td>RT @10MillionMiler: The Distance Between.. @10MillionMiler #quote #leadership #action #entrepreneur #quotes RT @Chrisalexii https://t.co/jW…</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>RT @ACOACanada: It’s Global Entrepreneurship Week! Find out what events are happening in your region: https://t.co/N6OVpBcVmH #GEWCanada</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @metrocalgary: Could you build a business in 30 days? One Calgarian is trying - https://t.co/Yw6ZzdnjnX #yyc https://t.co/BO34yzENfQ</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>RT @the_A100: Congrats Brad Zumwalt for receiving the Rod Charko Award at #SCLP2015 @ABEnterpriseCor @AssemblyCS @startupcalgary https://t.…</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>RT @calgarydropin: Have you seen our powerful new video yet? Please watch, share and donate at livesbegin.ca. Every dollar matters.<br>https:/…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (15/03/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['hannahcree__tweets.tsv', 'hannahcree__retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>
