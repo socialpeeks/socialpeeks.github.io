@@ -1,0 +1,499 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>User Activitiy Insights by SocialPeeks</title>    
+<style>
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #f2f2f2;
+}
+
+
+.rwd-table {
+  background: #4298B5;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  border-spacing:0em;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .1em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  letter-spacing: -1px;
+}
+h1 span {
+  color: #167F92;
+}
+.child{
+    display:inline-block;
+    margin: 1em;
+}
+
+#footer {
+    margin: 0px auto;
+    width: 850px;
+}    
+#footer .copyright {
+    float: left;
+    padding: 30px 0;
+    width: 425px;
+    text-align: center;
+    font-weight: normal;
+    font-size:small
+}
+
+</style>
+<style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    input[type=button] {
+        margin:10px; 
+    }
+    .glyphicon {
+        font-size: 24px;
+    }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h1>Twitter User Activitiy Analysis by <span><a href="http://socialpeeks.com">socialpeeks</a></span></h1>
+<table class="rwd-table">
+    <tr>
+        <th>Screen name</th>
+        <th>Location</th>
+        <th>Bio</th>
+        <th>Followers</th>
+        <th>Following</th>
+    </tr>
+    <tr>
+        <td><a href="http://twitter.com/DenverBeerGuy">DenverBeerGuy</a></td>
+        <td>Denver, CO</td>
+        <td>I tweet/retweet a lot of great stuff about craft beer so get ready! If you're human I'll follow you back. Retweets are not an endorsement.</td>
+        <td>10,333</td>
+        <td>6,137</td>
+    </tr>
+</table><h2>Analysis based on 400 most recent tweets</h2>
+<h2><span>DenverBeerGuy</span> engages 99% (retweets/tweets) and has average resonance of 0.75</h2>
+<hr><div id="chart"></div>
+<div id="dataset-picker"><span align="center" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A Tweet day/time heat map shows user's activity. Toggle between original tweets and retweets to see differneces in behaviour."></span></div>
+<div class='child'><h2>Top hashtags in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in original tweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>brewerycorner</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>cobras1xx</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>canadatoday24h</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>cannerofcraft</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>jason6440</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>deprael</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>slavontic</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>apaulacarvalho1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>wp1957</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>coldspot</td>
+        <td>1</td>
+    </tr>
+</table></div>
+<h2>Most popular original tweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>The Denver Beer Guy Daily is out! https://t.co/sqBoMGcjRm Stories via @Slavontic @Jason6440 @wp1957</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>The Denver Beer Guy Daily is out! https://t.co/cKf773YRn1 Stories via @Apaulacarvalho1 @cannerofcraft @Cobras1xx</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>The Denver Beer Guy Daily is out! https://t.co/HmFTmwdnsx Stories via @BreweryCorner @CanadaToday24h @coldspot</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>Drinking a Willy by @deprael - https://t.co/BmIxqZ67bL</td>
+    </tr>
+</table>
+<div class='child'><h2>Top hashtags in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>hashtag</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>#craftbeer</td>
+        <td>46</td>
+    </tr>
+    <tr>
+        <td>#beer</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>#photo</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>#craft</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>#VOTE</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>#CraftBrewers</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Travel</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>#Denver</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#brewery</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>#homebrew</td>
+        <td>3</td>
+    </tr>
+</table></div>
+<div class='child'><h2>Top Mentions in retweets </h2><table class="rwd-table">
+    <tr>
+        <th>@user</th>
+        <th>frequency</th>
+    </tr>
+    <tr>
+        <td>wauk_craft_brew</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>craft_brew_girl</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>backyard_resort</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>bluejacketdc</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>badwolfbrewingc</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>artandcraftwork</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>brewstuds</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>luxury</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>untappd</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>raisedgrain</td>
+        <td>6</td>
+    </tr>
+</table></div>
+<h2>Most popular retweets</h2><table class="rwd-table">
+    <tr>
+        <th>Retweet count</th>
+        <th>Text</th>
+    </tr>
+    <tr>
+        <td>32</td>
+        <td>RT @business: Tasting super-rare brews at one of the best craft beer bars on the planet https://t.co/gIzx1kNWmQ https://t.co/7iV9LJvJRA</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>RT @mchardie: It appears that NB Liquor is increasing fees to craft brewers. I guess Crown corps don't follow Liberal platform. https://t.c…</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>RT @BrewersAssoc: It may be #AprilFoolsDay, but seriously #CBC16 is THE industry event to attend! Register now https://t.co/qbK2dmZuSa http…</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @CraftBrewCruise: Tickets are now on sale for Toronto Craft Brew Cruise! Craft Beer + Boats = Happy https://t.co/Fbw6wiMn4c https://t.co…</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @BrewStuds: “Small and independent craft brewers are putting #American beer on the global map.” https://t.co/1vDlNxlUya</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>RT @BrewStuds: 'Most craft brewers love #beer and beer #culture...not interested in growing...only to...profit.' https://t.co/DEDsULO5MD</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>RT @SenAngusKing: Through their hard work &amp;amp; innovation, our craft brewers are creating jobs, driving economic development, and bringing peo…</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>RT @IBJnews: IU biochemist helps craft brewers overcome costly challenge with sour beers. https://t.co/YBLM1vIfax https://t.co/o93hwJQF8i</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>RT @BrewersAssoc: BA board chair @allagashrob explains why #CBC16 is a must-attend. See you there? https://t.co/xT706Nas3s Register→ https:…</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>RT @BossBrewingCo: Some interesting interviews here with women in brewing: https://t.co/AiwzUPxz1R. Worth a little read! #brewing #beer #cr…</td>
+    </tr>
+</table>
+<div id="footer"><div class="copyright">Copyright &copy; 2015 SocialPeeks.  All rights reserved. (04/04/2016)</div></div>
+    <script type="text/javascript">
+      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+          width = 960 - margin.left - margin.right,
+          height = 430 - margin.top - margin.bottom,
+          gridSize = Math.floor(width / 24),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          datasets = ['DenverBeerGuy_tweets.tsv', 'DenverBeerGuy_retweets.tsv'];
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
+      var heatmapChart = function(tsvFile) {
+        d3.tsv(tsvFile,
+        function(d) {
+          return {
+            day: +d.day,
+            hour: +d.hour,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var cards = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          cards.append("title");
+
+          cards.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
+
+          cards.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          cards.select("title").text(function(d) { return d.value; });
+          
+          cards.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".btn btn-primary")
+        .data(datasets);
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return d })
+        .attr("type", "button")
+        .attr("class", "btn btn-primary")
+        .attr("style","padding: 5px 10px")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script> 
+</body> 
+</html>
